@@ -8,7 +8,7 @@ using namespace std;
 
 enum class Shape {
 	Club,
-	Diamond,
+	Diamond,vdvds
 	Heart,
 	Spade
 };
