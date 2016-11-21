@@ -17,47 +17,37 @@ Game::Game(char* configurationFile)
 void Game::dummyConfig1()
 {
 	isVerbalOn = false;
-	N =3;
-	//vector<Card*> aaa;
-	//cout << deck.getCards().size();
-	Card* c = new FigureCard('K', 'C');
-	deck.getCards().push_back(c);
-	Card* c1 = new FigureCard('Q', 'H');
-	deck.getCards().push_back(c1);
-	Card* c3 = new NumericCard('3', 'D');
-	deck.getCards().push_back(c3);
+	N = 3;
 
-	cout << deck.getCards()[1]->toString() << endl;
+	deck.getCards().push_back(new FigureCard('K', 'C'));
+	deck.getCards().push_back(new FigureCard('Q', 'H'));
+	deck.getCards().push_back(new NumericCard(3, 'D'));
 	deck.getCards().push_back(new FigureCard('A', 'H'));
 	deck.getCards().push_back(new FigureCard('J', 'H'));
-	deck.getCards().push_back(new NumericCard('2', 'C'));
-	deck.getCards().push_back(new NumericCard('3', 'S'));
+	deck.getCards().push_back(new NumericCard(2, 'C'));
+	deck.getCards().push_back(new NumericCard(3, 'S'));
 	deck.getCards().push_back(new FigureCard('K', 'S'));
 	deck.getCards().push_back(new FigureCard('A', 'S'));
 	deck.getCards().push_back(new FigureCard('J', 'S'));
-	deck.getCards().push_back(new NumericCard('3', 'C'));
+	deck.getCards().push_back(new NumericCard(3, 'C'));
 	deck.getCards().push_back(new FigureCard('K', 'H'));
 	deck.getCards().push_back(new FigureCard('A', 'D'));
 	deck.getCards().push_back(new FigureCard('Q', 'C'));
 	deck.getCards().push_back(new FigureCard('J', 'D'));
 	deck.getCards().push_back(new FigureCard('Q', 'S'));
-	deck.getCards().push_back(new NumericCard('3', 'H'));
+	deck.getCards().push_back(new NumericCard(3, 'H'));
 	deck.getCards().push_back(new FigureCard('K', 'D'));
 	deck.getCards().push_back(new FigureCard('A', 'C'));
 	deck.getCards().push_back(new FigureCard('J', 'C'));
-	deck.getCards().push_back(new NumericCard('2', 'D'));
-	deck.getCards().push_back(new NumericCard('2', 'H'));
-	deck.getCards().push_back(new NumericCard('2', 'S'));
+	deck.getCards().push_back(new NumericCard(2, 'D'));
+	deck.getCards().push_back(new NumericCard(2, 'H'));
+	deck.getCards().push_back(new NumericCard(2, 'S'));
 	deck.getCards().push_back(new FigureCard('Q', 'D'));
 
-	cout << deck.getCards().size();
-//	vector<Player *>::iterator it2;
+	players.push_back(new PlayerType1("Alice"));
+	players.push_back(new PlayerType2("Bob"));
+	players.push_back(new PlayerType3("Charlie"));
 
-//	it2 = players.begin();
-//	it2 = players.insert(it2, &Player("Alice", 1));
-//	it2 = players.insert(it2, &Player("Bob", 2));
-//	it2 = players.insert(it2, &Player("Charlie", 3));
-//	delete it2;
 }
 
 void Game::dummyConfig2()
@@ -84,6 +74,9 @@ void Game::play(){}
 void Game::printState(){
 
 	cout << deck.toString() << endl;
+    for (int i = 0; i < players.size(); ++i) {
+        cout << players[i]->toString();
+    }
 
 }       //This function prints the cards remaining in
 //the deck from top to bottom in a single line,
