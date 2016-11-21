@@ -1,13 +1,13 @@
 #include <iostream>
-#include "include/Card.h"
-#include "include/Game.h"
+#include "Card.h"
+#include "Game.h"
 
 using namespace std;
 
 int main(int argc, char **argv) {
 
-	FigureCard* c1 = new FigureCard('H', 'Q');
-	cout << c1->toString() << endl;
+	FigureCard c1 = FigureCard('H', 'Q');
+	cout << c1.toString() << endl;
 
 	NumericCard c2 = NumericCard(5, 'H');
 	cout << c2.toString() << endl;

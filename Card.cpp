@@ -1,7 +1,7 @@
 #ifndef CARD_CPP_
 #define CARD_CPP_
 
-#include "../include/Card.h"
+#include "Card.h"
 
 #include <iostream>
 #include <sstream>

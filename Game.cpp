@@ -1,6 +1,6 @@
-#include "../include/Deck.h"
-#include "../include/Player.h"
-#include "../include/Game.h"
+#include "Deck.h"
+#include "Player.h"
+#include "Game.h"
 #include <iostream>
 
 using namespace std;

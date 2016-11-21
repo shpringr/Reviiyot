@@ -1,4 +1,4 @@
-#include "../include/Player.h"
+#include "Player.h"
 #include <iostream>
 
 using namespace std;
