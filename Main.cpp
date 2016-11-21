@@ -6,8 +6,8 @@ using namespace std;
 
 int main(int argc, char **argv) {
 
-	FigureCard c1 = FigureCard('H', 'Q');
-	cout << c1.toString() << endl;
+	FigureCard* c1 = new FigureCard('H', 'Q');
+	cout << c1->toString() << endl;
 
 	NumericCard c2 = NumericCard(5, 'H');
 	cout << c2.toString() << endl;
@@ -34,7 +34,3 @@ int main(int argc, char **argv) {
 
 	return 0;
 }
-
-
-
-
