@@ -7,6 +7,8 @@ using namespace std;
 
 Game::Game(char* configurationFile)
 {
+	//players();
+	//deck();
 	dummyConfig1();
 	readConfigFile(configurationFile);
 	printState();
@@ -16,12 +18,16 @@ void Game::dummyConfig1()
 {
 	isVerbalOn = false;
 	N =3;
-	cout << deck.getCards().size();
-	deck.getCards().push_back(new FigureCard('K', 'C'));
-	deck.getCards().push_back(new FigureCard('Q', 'H'));
-	deck.getCards().push_back(new NumericCard('3', 'D'));
+	//vector<Card*> aaa;
+	//cout << deck.getCards().size();
+	Card* c = new FigureCard('K', 'C');
+	deck.getCards().push_back(c);
+	Card* c1 = new FigureCard('Q', 'H');
+	deck.getCards().push_back(c1);
+	Card* c3 = new NumericCard('3', 'D');
+	deck.getCards().push_back(c3);
 
-	cout << deck.getCards()[1]->toString();
+	cout << deck.getCards()[1]->toString() << endl;
 	deck.getCards().push_back(new FigureCard('A', 'H'));
 	deck.getCards().push_back(new FigureCard('J', 'H'));
 	deck.getCards().push_back(new NumericCard('2', 'C'));

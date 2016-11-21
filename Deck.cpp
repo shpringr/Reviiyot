@@ -6,10 +6,20 @@
 #include <vector>
 using namespace std;
 
-vector<Card *> Deck::getCards()
+//Deck::Deck() {
+//	vector<Card *> emptyVector;
+//	cards = emptyVector;
+//}
+//
+
+ vector<Card *> & Deck ::getCards()
 {
 	return cards;
 }
+//
+//Card* Deck::fetchCard(){
+//	cards.pop_back();
+//}
 
 string Deck::toString()
 {
@@ -23,3 +33,4 @@ string Deck::toString()
 
 	return s;
 }
+
