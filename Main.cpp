@@ -1,6 +1,6 @@
 #include <iostream>
-#include "../include/Card.h"
-#include "../include/Game.h"
+#include "include/Card.h"
+#include "include/Game.h"
 
 using namespace std;
 
