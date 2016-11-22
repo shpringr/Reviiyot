@@ -10,21 +10,21 @@ using namespace std;
 
 int main(int argc, char **argv) {
 
-    tryCompareCards();
+//    tryCompareCards();
 
-	FigureCard c1 = FigureCard('H', 'Q');
-	cout << c1.toString() << endl;
+//	FigureCard c1 = FigureCard('H', 'Q');
+//	cout << c1.toString() << endl;
+//
+//	NumericCard c2 = NumericCard(5, 'H');
+//	cout << c2.toString() << endl;
+////	int argc, char **argv
+ char* configurationFile = argv[1];
 
-	NumericCard c2 = NumericCard(5, 'H');
-	cout << c2.toString() << endl;
-//	int argc, char **argv
-	 char* configurationFile = argv[1];
 
-
-
+//
 	Game game = Game(configurationFile);
-	cout << "first : the size: " << game.trygetNumberOfCards() << endl;
-	game.printState();
+//	cout << "first : the size: " << game.trygetNumberOfCards() << endl;
+//	game.printState();
 //
 //	Card* temp = game.tryFetch();
 //	cout << temp->toString() << endl;
@@ -33,8 +33,9 @@ int main(int argc, char **argv) {
 
 
 
-	/*game.init();
- 	Game initializedGame = game;
+	game.init();
+    game.printState();
+ 	/*Game initializedGame = game;
  	game.play();
 
 	cout << std::endl;

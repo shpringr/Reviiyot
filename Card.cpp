@@ -61,6 +61,27 @@ Figure FigureCard::getFigure()
 	return figure;
 }
 
+bool FigureCard::isSamePrefix(Card* card)
+{
+	if (FigureCard* fc = dynamic_cast<FigureCard *>(card))
+	{
+		return (figureNamesToSymbols[this->getFigure()] == figureNamesToSymbols[fc->getFigure()]);
+	}
+
+	return false;
+}
+
+bool NumericCard::isSamePrefix(Card* card)
+{
+	if (NumericCard* nc = dynamic_cast<NumericCard*>(card))
+	{
+		return (this->getNumber() == nc->getNumber());
+	}
+
+	return false;
+}
+
+
 int FigureCard::compare(Card* card) {
 
     if (NumericCard* nc = dynamic_cast<NumericCard *>(card))

@@ -29,6 +29,7 @@ public:
   virtual string toString() = 0; //Returns the string representation of the card "<value><shape>" exp: "12S" or "QD"
   virtual ~Card();
   virtual int compare(Card* card) = 0;
+	virtual bool isSamePrefix(Card* card) = 0;
 };
 
 class FigureCard : public Card {
@@ -40,6 +41,7 @@ public:
 	void setFigure(Figure figure);
 	virtual string toString() override;
     virtual int compare(Card* card) override;
+	virtual bool isSamePrefix(Card* card) override;
 };
 
 class NumericCard : public Card {
@@ -51,6 +53,7 @@ public:
 	void setNumber(int num);
 	virtual string toString() override;
     virtual int compare(Card* card) override;
+	virtual bool isSamePrefix(Card* card) override;
 };
 
 #endif

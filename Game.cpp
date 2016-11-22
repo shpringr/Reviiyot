@@ -24,17 +24,17 @@ void Game::dummyConfig1()
 	deck.getCards().push_back(new FigureCard('J', 'H'));
 	deck.getCards().push_back(new NumericCard(2, 'C'));
 	deck.getCards().push_back(new NumericCard(3, 'S'));
-	deck.getCards().push_back(new FigureCard('K', 'S'));
+    deck.getCards().push_back(new FigureCard('K', 'S'));
 	deck.getCards().push_back(new FigureCard('A', 'S'));
 	deck.getCards().push_back(new FigureCard('J', 'S'));
 	deck.getCards().push_back(new NumericCard(3, 'C'));
-	deck.getCards().push_back(new FigureCard('K', 'H'));
+    deck.getCards().push_back(new FigureCard('K', 'H'));
 	deck.getCards().push_back(new FigureCard('A', 'D'));
 	deck.getCards().push_back(new FigureCard('Q', 'C'));
 	deck.getCards().push_back(new FigureCard('J', 'D'));
 	deck.getCards().push_back(new FigureCard('Q', 'S'));
 	deck.getCards().push_back(new NumericCard(3, 'H'));
-	deck.getCards().push_back(new FigureCard('K', 'D'));
+    deck.getCards().push_back(new FigureCard('K', 'D'));
 	deck.getCards().push_back(new FigureCard('A', 'C'));
 	deck.getCards().push_back(new FigureCard('J', 'C'));
 	deck.getCards().push_back(new NumericCard(2, 'D'));
@@ -46,9 +46,9 @@ void Game::dummyConfig1()
 	players.push_back(new PlayerType2("Bob"));
 	players.push_back(new PlayerType3("Charlie"));
 
-    for (int i = 0; i < deck.getCards().size(); ++i) {
-        players[0]->addCard(*(deck.getCards()[i]));
-    }
+//    for (int i = 0; i < deck.getCards().size(); ++i) {
+//        players[0]->addCard(*(deck.getCards()[i]));
+//    }
 
 }
 
@@ -84,7 +84,26 @@ vector<Player *> Game::getPlayers()
 }
 void Game::readConfigFile(char* configurationFile){}
 
-void Game::init(){}//7 cards for each player, if one receives 4 cards similiares - discard the set
+void Game::init(){
+
+    for (int i = 0; i < players.size(); ++i) {
+
+        for (int j = 0; j < 7 && deck.getCards().size() > 0; ++j) {
+            Card* currCard = deck.fetchCard();
+            Player* currPlayer = players[i];
+            currPlayer->addCard(*currCard);
+
+            if(currPlayer->getNumberOfSamePref(currCard) == 4)
+            {
+                for(Card* card : currPlayer->getCardWithSamePref(currCard))
+                {
+                    currPlayer->removeCard(*card);
+                }
+            }
+        }
+    }
+
+}//7 cards for each player, if one receives 4 cards similiares - discard the set
 
 void Game::play(){
 
