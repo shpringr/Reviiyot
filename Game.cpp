@@ -95,15 +95,12 @@ void Game::init(){
 
             if(currPlayer->getNumberOfSamePref(currCard) == 4)
             {
-                for(Card* card : currPlayer->getCardWithSamePref(currCard))
-                {
-                    currPlayer->removeCard(*card);
-                }
+                currPlayer->discardSet(currCard);
             }
         }
     }
 
-}//7 cards for each player, if one receives 4 cards similiares - discard the set
+}
 
 void Game::play(){
 

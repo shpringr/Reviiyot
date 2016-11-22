@@ -30,7 +30,7 @@ int Hand::getNumberOfSamePref(Card* card) {
     return count;
 }
 
-vector<Card *> Hand::getCardWithSamePref(Card* card)
+vector<Card *> Hand::getCardsWithSamePref(Card *card)
 {
     vector<Card *> cards;
     for (Card *c : hand)
@@ -46,6 +46,14 @@ vector<Card *> Hand::getCardWithSamePref(Card* card)
 
 
 bool compare(Card *c1, Card *c2) { return (c1->compare(c2) < 0); }
+
+
+void Hand::discardSet(Card *currCard) {
+    for (Card *card : getCardsWithSamePref(currCard)) {
+        removeCard(*card);
+        delete card;
+    }
+}
 
 string Hand::toString() {
 

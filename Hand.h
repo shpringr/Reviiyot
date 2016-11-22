@@ -20,7 +20,9 @@ public:
 	int getNumberOfCards(); // Get the number of cards in hand
 
 	string toString() ; // Return a list of the cards, separated by space, in one line,in a sorted order, ex: "2S 5D 10H"
-	std::vector<Card *> getCardWithSamePref(Card* card);
+	std::vector<Card *> getCardsWithSamePref(Card *card);
+
+	void discardSet(Card *currCard);
 };
 
 #endif
