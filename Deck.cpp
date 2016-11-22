@@ -16,10 +16,13 @@ using namespace std;
 {
 	return cards;
 }
-//
-//Card* Deck::fetchCard(){
-//	cards.pop_back();
-//}
+
+
+Card* Deck::fetchCard(){
+	Card* temp = cards.front();
+	cards.erase(cards.begin());
+	return temp;
+}
 
 string Deck::toString()
 {

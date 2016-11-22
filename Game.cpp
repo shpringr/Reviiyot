@@ -5,14 +5,14 @@
 
 using namespace std;
 
-Game::Game(char* configurationFile)
-{
+Game::Game(char* configurationFile) {
 	//players();
 	//deck();
 	dummyConfig1();
 	readConfigFile(configurationFile);
 	printState();
 }
+
 
 void Game::dummyConfig1()
 {
@@ -49,6 +49,12 @@ void Game::dummyConfig1()
 	players.push_back(new PlayerType3("Charlie"));
 
 }
+
+Card* Game::tryFetch(){
+	Card* temp = deck.fetchCard();
+	return temp;
+}
+
 
 void Game::dummyConfig2()
 {
