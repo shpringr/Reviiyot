@@ -10,7 +10,7 @@ using namespace std;
 
 class Hand {
 private:
-	vector<Card> hand;
+	vector<Card *> hand;
 	// Declare here the collection of "Card *" of the hand
 public:
 	Hand();

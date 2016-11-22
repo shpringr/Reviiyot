@@ -25,7 +25,7 @@ private:
   Shape shape;
 public:
   Shape getShape();
-  void setShape(Shape shape);
+  void setShape(Shape &shape);
   virtual string toString() = 0; //Returns the string representation of the card "<value><shape>" exp: "12S" or "QD"
   virtual ~Card();
 };

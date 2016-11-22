@@ -13,7 +13,6 @@ private:
 	const string name;
 public:
 	string getName();//Returns the name of the player
-	void setName(string nam);
 	string toString();
 
 };

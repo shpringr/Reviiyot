@@ -8,7 +8,7 @@ Hand::Hand(){}
 string Hand::toString() {
     string s;
     for (int i = 0; i < hand.size(); ++i) {
-        s += hand[i].toString() + " ";
+        s += hand[i]->toString() + " ";
     }
 
     return s;

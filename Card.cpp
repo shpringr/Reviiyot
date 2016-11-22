@@ -52,7 +52,7 @@ Shape Card::getShape(){
 	return shape;
 }
 
-void Card::setShape(Shape shap){
+void Card::setShape(Shape &shap){
 	shape=shap;
 }
 
