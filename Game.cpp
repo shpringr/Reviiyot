@@ -86,6 +86,8 @@ void Game::play(){
 
 //    Player asked = ask.getFromWho(vector(copy));
 //    char whichCardPrefix = ask.getWhichCardPrefix(asked.getCards());
+
+
 }
 
 void Game::printState(){
