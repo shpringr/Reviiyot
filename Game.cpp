@@ -9,7 +9,7 @@ Game::Game(char* configurationFile)
 {
 	dummyConfig1();
 	readConfigFile(configurationFile);
-	printState();
+	//printState();
 }
 
 void Game::dummyConfig1()
@@ -45,6 +45,10 @@ void Game::dummyConfig1()
 	players.push_back(new PlayerType1("Alice"));
 	players.push_back(new PlayerType2("Bob"));
 	players.push_back(new PlayerType3("Charlie"));
+
+    for (int i = 0; i < deck.getCards().size(); ++i) {
+        players[0]->addCard(*(deck.getCards()[i]));
+    }
 
 }
 
