@@ -3,12 +3,14 @@
 #include <iostream>
 #include "Card.h"
 #include "Game.h"
+
+void tryCompareCards();
+
 using namespace std;
 
 int main(int argc, char **argv) {
 
-	FigureCard * C = new FigureCard('A','C');
-	NumericCard* C1 = new NumericCard('3','C');
+    tryCompareCards();
 
 	FigureCard c1 = FigureCard('H', 'Q');
 	cout << c1.toString() << endl;
@@ -49,6 +51,34 @@ int main(int argc, char **argv) {
 	//Card Card(s);
 
 	return 0;
+}
+
+void tryCompareCards() {
+
+    FigureCard* C= new FigureCard('A', 'C');
+    NumericCard* C1= new NumericCard(3, 'C');
+
+    FigureCard * C2 = new FigureCard('A', 'C');
+    FigureCard * C3 = new FigureCard('A','D');
+    FigureCard * C4 = new FigureCard('K','D');
+
+    NumericCard * C5 = new NumericCard(3, 'C');
+    NumericCard * C6 = new NumericCard(3,'D');
+    NumericCard * C7 = new NumericCard(2,'D');
+
+    int a1 = C->compare(C1); // 1
+    int a2 = C1->compare(C); //-1
+
+    int a3 = C->compare(C2); // 0
+    int a4 = C2->compare(C3); //-1
+    int a5 = C3->compare(C4); // 1
+
+    int a6 = C1->compare(C5); //0
+    int a7 = C5->compare(C6); //-1
+    int a8 = C6->compare(C7); //1
+
+    cout << "actul : "<<a1<<a2 <<a3<<a4<<a5<<a6<<a7<<a8 << endl;
+    cout << "1-10-110-11" << endl;
 }
 
 /*

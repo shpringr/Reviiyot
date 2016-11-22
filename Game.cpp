@@ -5,14 +5,12 @@
 
 using namespace std;
 
-Game::Game(char* configurationFile) {
-	//players();
-	//deck();
+Game::Game(char* configurationFile)
+{
 	dummyConfig1();
 	readConfigFile(configurationFile);
 	printState();
 }
-
 
 void Game::dummyConfig1()
 {
@@ -84,7 +82,11 @@ void Game::readConfigFile(char* configurationFile){}
 
 void Game::init(){}//7 cards for each player, if one receives 4 cards similiares - discard the set
 
-void Game::play(){}
+void Game::play(){
+
+//    Player asked = ask.getFromWho(vector(copy));
+//    char whichCardPrefix = ask.getWhichCardPrefix(asked.getCards());
+}
 
 void Game::printState(){
 

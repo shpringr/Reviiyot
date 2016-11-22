@@ -3,12 +3,7 @@
 
 #include "Card.h"
 
-#include <iostream>
 #include <sstream>
-#include <stdio.h>
-#include <fstream>
-#include <stdlib.h>
-#include <string>
 #include <map>
 
 using namespace std;
@@ -66,7 +61,25 @@ Figure FigureCard::getFigure()
 	return figure;
 }
 
+int FigureCard::compare(Card* card) {
 
+    if (NumericCard* nc = dynamic_cast<NumericCard *>(card))
+    {
+        return 1;
+    }
+
+    FigureCard* fc = dynamic_cast<FigureCard *>(card);
+    if (this->getFigure() > fc->getFigure())
+        return 1;
+    else if(this->getFigure() < fc->getFigure())
+        return -1;
+    else if (this->getShape() > fc->getShape())
+        return 1;
+    else if (this->getShape() < fc->getShape())
+        return -1;
+    else
+        return 0;
+}
 FigureCard::FigureCard(char figu , char shap)
 {
 	setFigure(figureSymbolsToNames[figu]);
@@ -99,6 +112,27 @@ NumericCard::NumericCard(int num, char shap){
 	setShape(shapeSymbolsToNames[shap]);
 }
 
+int NumericCard::compare(Card* card) {
+
+    if (FigureCard* fc = dynamic_cast<FigureCard *>(card))
+    {
+        return -1;
+    }
+
+    NumericCard* nc = dynamic_cast<NumericCard*>(card);
+
+    if (this->getNumber() > nc->getNumber())
+        return 1;
+    else if(this->getNumber() < nc->getNumber())
+        return -1;
+    else if (this->getShape() > nc->getShape())
+        return 1;
+    else if (this->getShape() < nc->getShape())
+        return -1;
+    else
+        return 0;
+
+}
 string NumericCard::toString(){
 		stringstream ss;
 		ss << getNumber();

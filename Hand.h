@@ -13,7 +13,6 @@ private:
 	vector<Card *> hand;
 	// Declare here the collection of "Card *" of the hand
 public:
-	Hand();
 	bool addCard(Card &card);
 	bool removeCard(Card &card);
 	int getNumberOfCards(); // Get the number of cards in hand
