@@ -11,6 +11,8 @@ using namespace std;
 class Player : public Hand {
 private:
 	const string name;
+protected:
+	Player(string nam);
 public:
 	string getName();//Returns the name of the player
 	string toString();

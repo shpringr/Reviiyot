@@ -75,7 +75,7 @@ void Game::printState(){
 
 	cout << deck.toString() << endl;
     for (int i = 0; i < players.size(); ++i) {
-        cout << players[i]->toString();
+        cout << players[i]->toString() << endl;
     }
 
 }       //This function prints the cards remaining in
