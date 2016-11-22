@@ -21,12 +21,12 @@ int main(int argc, char **argv) {
 
 
 	Game game = Game(configurationFile);
-	cout << "first : " << endl;
+	cout << "first : the size: " << game.trygetNumberOfCards() << endl;
 	game.printState();
 
 	Card* temp = game.tryFetch();
 	cout << temp->toString() << endl;
-	cout << "second : " << endl;
+	cout << "second : the size: " << game.trygetNumberOfCards() << endl;
 	game.printState();
 
 

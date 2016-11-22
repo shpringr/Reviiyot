@@ -24,6 +24,10 @@ Card* Deck::fetchCard(){
 	return temp;
 }
 
+int Deck::getNumberOfCards(){
+	return (int)cards.size();
+}
+
 string Deck::toString()
 {
 	string s;

@@ -20,6 +20,7 @@ private:
 	void dummyConfig3();
 public:
 	Card* tryFetch();
+	int trygetNumberOfCards();
 	Game(char* configurationFile);
 	vector<Player *> getPlayers();
 	void init();

@@ -55,6 +55,11 @@ Card* Game::tryFetch(){
 	return temp;
 }
 
+int Game::trygetNumberOfCards(){
+	return deck.getNumberOfCards();
+}
+
+
 
 void Game::dummyConfig2()
 {
