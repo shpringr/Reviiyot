@@ -11,10 +11,13 @@ using namespace std;
 class Player : public Hand {
 private:
 	const string name;
+	int numOfPlayers;
 protected:
 	Player(string nam);
+
 public:
 	string getName();//Returns the name of the player
+	virtual void play()=0;
 	string toString();
 
 };
@@ -22,6 +25,7 @@ public:
 class PlayerType1 : public Player {  //For strategy 1
 //...
 public:
+
 	PlayerType1(string nam);
 };
 

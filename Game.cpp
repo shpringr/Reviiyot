@@ -59,6 +59,10 @@ int Game::trygetNumberOfCards(){
 	return deck.getNumberOfCards();
 }
 
+int Game::getNumbersOfPlayers(){
+	return (int)players.size();
+}
+
 
 
 void Game::dummyConfig2()

@@ -21,6 +21,7 @@ private:
 public:
 	Card* tryFetch();
 	int trygetNumberOfCards();
+	int getNumbersOfPlayers();
 	Game(char* configurationFile);
 	vector<Player *> getPlayers();
 	void init();
