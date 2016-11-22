@@ -17,7 +17,7 @@ protected:
 
 public:
 	string getName();//Returns the name of the player
-	virtual void play()=0;
+//	virtual void play()=0;
 	string toString();
 
 };
