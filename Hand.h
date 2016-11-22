@@ -2,7 +2,7 @@
 #define HAND_H_
 
 #include <iostream>
-#include <vector>
+#include <list>
 
 #include "Card.h"
 
@@ -10,7 +10,7 @@ using namespace std;
 
 class Hand {
 private:
-	vector<Card *> hand;
+	list<Card *> hand;
 	// Declare here the collection of "Card *" of the hand
 public:
 	bool addCard(Card &card);
