@@ -8,7 +8,6 @@ Game::Game(char *configurationFile): players(), deck(), isVerbalOn(), N(){
     dummyConfig1();
     //readConfigFile(configurationFile);
 }
-
 Game::Game(const Game& game): players(game.players), deck(game.deck), isVerbalOn(game.isVerbalOn), N(game.N){}
 
 void Game::dummyConfig1()
@@ -70,17 +69,21 @@ void Game::init() {
 }
 
 void Game::play() {
-    int currPlayer = 0;
+
+    int currPlayerIndex = 0;
 
     while (!isThereAWinner()) {
 
         increaseNumberOfTurns();
 
-        Player *askingPlayer = players[currPlayer];
-        Player *askedPlayer = players[(currPlayer + 1) % players.size()]; //meanwhile till we have getFromWho()
+        Player *askingPlayer = players[currPlayerIndex];
+        Player *askedPlayer = players[(currPlayerIndex + 1) % players.size()]; //meanwhile till we have getFromWho()
         //Player askedPlayer = askingPlayer.getFromWho(vector(copy));
         Card *cardToAsk = askingPlayer->getFirstCard(); //meanwhile till we have getCardToAsk()
         //Card *cardToAsk = askingPlayer.getCardToAsk(askedPlayer.getCards());
+
+        if (isVerbalOn)
+            printATurn(askingPlayer, askedPlayer, cardToAsk);
 
         vector<Card *> cardsOfSamePref = askedPlayer->searchCardsWithSamePref(cardToAsk);
 
@@ -103,22 +106,20 @@ void Game::play() {
             }
         }
 
-        if (isVerbalOn) {
-
-            cout << "asking " + askingPlayer->getName() << endl;
-            cout << "asked " + askedPlayer->getName() << endl;
-            cout << "card " << cardToAsk->toString() << endl;
-            printNumberOfTurns();
-            printState();
-        }
-
-        currPlayer = (currPlayer + 1) % players.size();
+        currPlayerIndex = (currPlayerIndex + 1) % players.size();
     }
+}
+
+void Game::printATurn(Player *askingPlayer, Player *askedPlayer, Card *cardToAsk) {
+    cout << "Turn " << numberOfTurns << endl;
+    printState();
+    cout << askingPlayer->getName() + " asked " + askedPlayer->getName()
+            + " for the value " + cardToAsk->getPrefix() << endl << endl;
 }
 
 void Game::addCardAndDiscardIfNeeded(Player *player, Card *card) {
     player->addCard(*card);
-    if (player->getNumberOfSamePref(card) == 4)
+    if (player->getNumberOfSamePrefix(card) == 4)
         player->discardSet(card);
 }
 
@@ -129,26 +130,49 @@ void Game::addCardAndDiscardIfNeeded(Player *player, Card *card) {
 //
 void Game::printState() {
 
-    cout << deck.toString() << endl;
+    cout << "Deck: " << deck.toString() << endl;
     for (unsigned int i = 0; i < players.size(); ++i) {
         cout << players[i]->toString() << endl;
     }
 
 }
 // or winners
-void Game::printWinner() {}
+void Game::printWinner() {
+    vector<Player*> winners = getWinners();
 
-void Game::printNumberOfTurns() {}
+    if (winners.size() > 1)
+        cout << "***** The winners are: ";
+     else
+        cout << "***** The Winner is: ";
+
+    for (unsigned int i = 0; i < winners.size(); ++i) {
+        if (i>0)
+            cout << "and ";
+        cout << winners[i]->getName() + " ";
+    }
+
+    cout <<  "*****" << endl;
+}
+
+void Game::printNumberOfTurns() {
+    cout << "NumberOfTurns: " << numberOfTurns << endl;
+}
 
 void Game::increaseNumberOfTurns() {
     numberOfTurns++;
 }
 
 bool Game::isThereAWinner() {
-    for (Player *player : players) {
-        if (player->getNumberOfCards() == 0)
-            return true;
-    }
+    return getWinners().size() > 0;
+}
 
-    return false;
+vector<Player*> Game::getWinners()
+{
+    vector<Player*> winners;
+    for (Player *player : players) {
+            if (player->getNumberOfCards() == 0)
+                winners.push_back(player);
+        }
+
+        return winners;
 }

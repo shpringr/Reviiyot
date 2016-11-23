@@ -24,6 +24,7 @@ private:
     void addCardAndDiscardIfNeeded(Player *player, Card *card);
     void increaseNumberOfTurns();
     bool isThereAWinner();
+    void printATurn(Player *pPlayer, Player *pPlayer1, Card *pCard);
 
 public:
     Game(char *configurationFile);
@@ -33,6 +34,7 @@ public:
     void printState();
     void printWinner();
     void printNumberOfTurns();
+    vector<Player *> getWinners();
 };
 
 #endif

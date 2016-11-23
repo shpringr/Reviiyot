@@ -17,7 +17,7 @@ protected:
 public:
     bool addCard(Card &card);
     bool removeCard(Card &card);
-    int getNumberOfSamePref(Card *card);
+    int getNumberOfSamePrefix(Card *card);
     int getNumberOfCards();
     string toString();
     vector<Card *> searchCardsWithSamePref(Card *card);

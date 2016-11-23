@@ -4,7 +4,8 @@
 using namespace std;
 
 Hand::Hand():hand(){}
-bool Hand::addCard(Card &card) {
+bool Hand::addCard(Card &card)
+{
     hand.push_back(&card);
     return true;
 }
@@ -18,14 +19,17 @@ int Hand::getNumberOfCards() {
     return hand.size();
 }
 
-int Hand::getNumberOfSamePref(Card *card) {
+int Hand::getNumberOfSamePrefix(Card* card)
+{
     int count = 0;
 
     for (Card *c : hand) {
-        if (c->isSamePrefix(card)) {
+        if (c->isSamePrefix(card))
+        {
             count++;
         }
     }
+
     return count;
 }
 
@@ -52,7 +56,7 @@ bool compare(Card *c1, Card *c2) { return (c1->compare(c2) < 0); }
 string Hand::toString() {
 
     string s;
- //   hand.sort(compare);
+    hand.sort(compare);
 
     for (Card *c : hand) {
         s += c->toString() + " ";
