@@ -9,6 +9,8 @@ Game::Game(char *configurationFile): players(), deck(), isVerbalOn(), N(){
     //readConfigFile(configurationFile);
 }
 
+Game::Game(const Game& game): players(game.players), deck(game.deck), isVerbalOn(game.isVerbalOn), N(game.N){}
+
 void Game::dummyConfig1()
 {
     isVerbalOn = true;
@@ -80,7 +82,7 @@ void Game::play() {
         Card *cardToAsk = askingPlayer->getFirstCard(); //meanwhile till we have getCardToAsk()
         //Card *cardToAsk = askingPlayer.getCardToAsk(askedPlayer.getCards());
 
-        vector<Card *> cardsOfSamePref = askedPlayer->getCardsWithSamePref(cardToAsk);
+        vector<Card *> cardsOfSamePref = askedPlayer->searchCardsWithSamePref(cardToAsk);
 
         if (cardsOfSamePref.size() == 0 && deck.getNumberOfCards() > 0)
             addCardAndDiscardIfNeeded(askingPlayer, deck.fetchCard());

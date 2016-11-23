@@ -27,6 +27,7 @@ private:
 
 public:
     Game(char *configurationFile);
+    Game(const Game& game);
     void init();
     void play();
     void printState();

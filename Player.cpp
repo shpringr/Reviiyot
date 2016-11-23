@@ -31,9 +31,7 @@ char PlayerType2::getWhichCardPrefix(Player *) {
     return 0;
 }
 
-PlayerType3::PlayerType3(string nam):Player(nam) {
-    from=0;
-    numberOfPlayers=0;
+PlayerType3::PlayerType3(string nam):Player(nam), from(0), numberOfPlayers(0){
 }
 
 Player* PlayerType3::getFromWho(vector<Player *> players, int iCurrPlaye){

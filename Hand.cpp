@@ -3,6 +3,7 @@
 
 using namespace std;
 
+Hand::Hand():hand(){}
 bool Hand::addCard(Card &card) {
     hand.push_back(&card);
     return true;
@@ -28,7 +29,7 @@ int Hand::getNumberOfSamePref(Card *card) {
     return count;
 }
 
-vector<Card *> Hand::getCardsWithSamePref(Card *card) {
+vector<Card *> Hand::searchCardsWithSamePref(Card *card) {
     vector<Card *> cards;
     for (Card *c : hand) {
         if (c->isSamePrefix(card)) {
@@ -40,7 +41,7 @@ vector<Card *> Hand::getCardsWithSamePref(Card *card) {
 }
 
 void Hand::discardSet(Card *currCard) {
-    for (Card *card : getCardsWithSamePref(currCard)) {
+    for (Card *card : searchCardsWithSamePref(currCard)) {
         removeCard(*card);
         delete card;
     }
