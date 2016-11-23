@@ -1,7 +1,5 @@
 #include "Card.h"
 #include "Hand.h"
-#include <iostream>
-#include <algorithm>
 
 using namespace std;
 
@@ -39,16 +37,14 @@ vector<Card *> Hand::getCardsWithSamePref(Card *card) {
     return cards;
 }
 
-
-bool compare(Card *c1, Card *c2) { return (c1->compare(c2) < 0); }
-
-
 void Hand::discardSet(Card *currCard) {
     for (Card *card : getCardsWithSamePref(currCard)) {
         removeCard(*card);
         delete card;
     }
 }
+
+bool compare(Card *c1, Card *c2) { return (c1->compare(c2) < 0); }
 
 string Hand::toString() {
 

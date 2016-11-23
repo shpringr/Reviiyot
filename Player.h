@@ -1,11 +1,10 @@
 #ifndef PLAYER_H_
 #define PLAYER_H_
 
+#include "Hand.h"
 #include <iostream>
 #include <string>
 #include <vector>
-#include "Hand.h"
-
 
 using namespace std;
 
@@ -17,7 +16,7 @@ protected:
     Player(string nam);
 
 public:
-	string getName();//Returns the name of the player
+	string getName();
 	virtual Player* getFromWho(vector<Player *> players, int iCurrPlayer)=0;
 	virtual char getWhichCardPrefix(Player *)=0;
 	virtual ~Player();

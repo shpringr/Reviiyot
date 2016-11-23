@@ -1,8 +1,4 @@
-#ifndef CARD_CPP_
-#define CARD_CPP_
-
 #include "Card.h"
-
 #include <sstream>
 #include <map>
 
@@ -50,30 +46,27 @@ void Card::setShape(Shape &shap) {
     shape = shap;
 }
 
-void FigureCard::setFigure(Figure figu) {
-    figure = figu;
+FigureCard::FigureCard(char figu, char shap) {
+    setFigure(figureSymbolsToNames[figu]);
+    setShape(shapeSymbolsToNames[shap]);
+}
+
+void FigureCard::setFigure(Figure figur) {
+    figure = figur;
 }
 
 Figure FigureCard::getFigure() {
     return figure;
 }
 
-bool FigureCard::isSamePrefix(Card *card) {
+bool FigureCard::isSamePrefix(Card *card)
+{
     if (FigureCard *fc = dynamic_cast<FigureCard *>(card)) {
         return (figureNamesToSymbols[this->getFigure()] == figureNamesToSymbols[fc->getFigure()]);
     }
 
     return false;
 }
-
-bool NumericCard::isSamePrefix(Card *card) {
-    if (NumericCard *nc = dynamic_cast<NumericCard *>(card)) {
-        return (this->getNumber() == nc->getNumber());
-    }
-
-    return false;
-}
-
 
 int FigureCard::compare(Card *card) {
 
@@ -82,6 +75,7 @@ int FigureCard::compare(Card *card) {
     }
 
     FigureCard *fc = dynamic_cast<FigureCard *>(card);
+
     if (this->getFigure() > fc->getFigure())
         return 1;
     else if (this->getFigure() < fc->getFigure())
@@ -94,32 +88,35 @@ int FigureCard::compare(Card *card) {
         return 0;
 }
 
-FigureCard::FigureCard(char figu, char shap) {
-    setFigure(figureSymbolsToNames[figu]);
-    setShape(shapeSymbolsToNames[shap]);
-}
-
 string FigureCard::toString() {
     stringstream ss;
 
     ss << figureNamesToSymbols[getFigure()];
     ss << shapeNamesToSymbols[getShape()];
     return ss.str();
-
 }
 
 
-void NumericCard::setNumber(int num) {
-    number = num;
+NumericCard::NumericCard(int num, char shap) {
+    setNumber(num);
+    setShape(shapeSymbolsToNames[shap]);
 }
 
 int NumericCard::getNumber() {
     return number;
 }
 
-NumericCard::NumericCard(int num, char shap) {
-    setNumber(num);
-    setShape(shapeSymbolsToNames[shap]);
+void NumericCard::setNumber(int num) {
+    number = num;
+}
+
+bool NumericCard::isSamePrefix(Card *card)
+{
+    if (NumericCard *nc = dynamic_cast<NumericCard *>(card)) {
+        return (this->getNumber() == nc->getNumber());
+    }
+
+    return false;
 }
 
 int NumericCard::compare(Card *card) {
@@ -140,7 +137,6 @@ int NumericCard::compare(Card *card) {
         return -1;
     else
         return 0;
-
 }
 
 string NumericCard::toString() {
@@ -149,8 +145,4 @@ string NumericCard::toString() {
     ss << shapeNamesToSymbols[getShape()];
 
     return ss.str();
-
 }
-
-#endif
-
