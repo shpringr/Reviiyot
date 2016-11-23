@@ -8,91 +8,83 @@
 
 using namespace std;
 
-
-map<char, Shape> shapeSymbolsToNames =  {
-		   {'C', Shape::Club},
-		   {'D', Shape::Diamond},
-		   {'H', Shape::Heart},
-		   {'S', Shape::Spade}
-		};
-
-
-map<char, Figure> figureSymbolsToNames =  {
-		   {'J', Figure::Jack},
-		   {'Q', Figure::Queen},
-		   {'K', Figure::King},
-		   {'A', Figure::Ace}
-		};
+map<char, Shape> shapeSymbolsToNames = {
+        {'C', Shape::Club},
+        {'D', Shape::Diamond},
+        {'H', Shape::Heart},
+        {'S', Shape::Spade}
+};
 
 
-map<Shape, char> shapeNamesToSymbols =  {
-		   {Shape::Club, 'C'},
-		   {Shape::Diamond, 'D'},
-		   {Shape::Heart, 'H'},
-		   {Shape::Spade, 'S'}
-		};
+map<char, Figure> figureSymbolsToNames = {
+        {'J', Figure::Jack},
+        {'Q', Figure::Queen},
+        {'K', Figure::King},
+        {'A', Figure::Ace}
+};
 
 
-map<Figure, char> figureNamesToSymbols =  {
-		   {Figure::Jack, 'J'},
-		   {Figure::Queen, 'Q'},
-		   {Figure::King, 'K'},
-		   {Figure::Ace, 'A'}
-		};
+map<Shape, char> shapeNamesToSymbols = {
+        {Shape::Club,    'C'},
+        {Shape::Diamond, 'D'},
+        {Shape::Heart,   'H'},
+        {Shape::Spade,   'S'}
+};
 
 
-Card::~Card(){}
+map<Figure, char> figureNamesToSymbols = {
+        {Figure::Jack,  'J'},
+        {Figure::Queen, 'Q'},
+        {Figure::King,  'K'},
+        {Figure::Ace,   'A'}
+};
 
-Shape Card::getShape(){
-	return shape;
+
+Card::~Card() {}
+
+Shape Card::getShape() {
+    return shape;
 }
 
-void Card::setShape(Shape &shap){
-	shape=shap;
+void Card::setShape(Shape &shap) {
+    shape = shap;
 }
 
-void FigureCard::setFigure(Figure figu)
-{
-	figure = figu;
+void FigureCard::setFigure(Figure figu) {
+    figure = figu;
 }
 
-Figure FigureCard::getFigure()
-{
-	return figure;
+Figure FigureCard::getFigure() {
+    return figure;
 }
 
-bool FigureCard::isSamePrefix(Card* card)
-{
-	if (FigureCard* fc = dynamic_cast<FigureCard *>(card))
-	{
-		return (figureNamesToSymbols[this->getFigure()] == figureNamesToSymbols[fc->getFigure()]);
-	}
+bool FigureCard::isSamePrefix(Card *card) {
+    if (FigureCard *fc = dynamic_cast<FigureCard *>(card)) {
+        return (figureNamesToSymbols[this->getFigure()] == figureNamesToSymbols[fc->getFigure()]);
+    }
 
-	return false;
+    return false;
 }
 
-bool NumericCard::isSamePrefix(Card* card)
-{
-	if (NumericCard* nc = dynamic_cast<NumericCard*>(card))
-	{
-		return (this->getNumber() == nc->getNumber());
-	}
+bool NumericCard::isSamePrefix(Card *card) {
+    if (NumericCard *nc = dynamic_cast<NumericCard *>(card)) {
+        return (this->getNumber() == nc->getNumber());
+    }
 
-	return false;
+    return false;
 }
 
 
-int FigureCard::compare(Card* card) {
+int FigureCard::compare(Card *card) {
 
-    if (NumericCard* nc = dynamic_cast<NumericCard *>(card))
-    {
+    if (NumericCard *nc = dynamic_cast<NumericCard *>(card)) {
         return 1;
     }
 
-    FigureCard* fc = dynamic_cast<FigureCard *>(card);
+    FigureCard *fc = dynamic_cast<FigureCard *>(card);
     if (this->getFigure() > fc->getFigure())
         return 1;
-    else if(this->getFigure() < fc->getFigure())
+    else if (this->getFigure() < fc->getFigure())
         return -1;
     else if (this->getShape() > fc->getShape())
         return 1;
@@ -101,50 +93,46 @@ int FigureCard::compare(Card* card) {
     else
         return 0;
 }
-FigureCard::FigureCard(char figu , char shap)
-{
-	setFigure(figureSymbolsToNames[figu]);
-	setShape(shapeSymbolsToNames[shap]);
+
+FigureCard::FigureCard(char figu, char shap) {
+    setFigure(figureSymbolsToNames[figu]);
+    setShape(shapeSymbolsToNames[shap]);
 }
 
-string FigureCard::toString()
-	 {
-	stringstream ss;
+string FigureCard::toString() {
+    stringstream ss;
 
-	ss << figureNamesToSymbols[getFigure()];
-	ss << shapeNamesToSymbols[getShape()];
-	return ss.str();
+    ss << figureNamesToSymbols[getFigure()];
+    ss << shapeNamesToSymbols[getShape()];
+    return ss.str();
 
-	 }
-
-
-void NumericCard::setNumber(int num)
-{
-	number = num;
 }
 
-int NumericCard::getNumber()
-{
-	return number;
+
+void NumericCard::setNumber(int num) {
+    number = num;
 }
 
-NumericCard::NumericCard(int num, char shap){
-	setNumber(num);
-	setShape(shapeSymbolsToNames[shap]);
+int NumericCard::getNumber() {
+    return number;
 }
 
-int NumericCard::compare(Card* card) {
+NumericCard::NumericCard(int num, char shap) {
+    setNumber(num);
+    setShape(shapeSymbolsToNames[shap]);
+}
 
-    if (FigureCard* fc = dynamic_cast<FigureCard *>(card))
-    {
+int NumericCard::compare(Card *card) {
+
+    if (FigureCard *fc = dynamic_cast<FigureCard *>(card)) {
         return -1;
     }
 
-    NumericCard* nc = dynamic_cast<NumericCard*>(card);
+    NumericCard *nc = dynamic_cast<NumericCard *>(card);
 
     if (this->getNumber() > nc->getNumber())
         return 1;
-    else if(this->getNumber() < nc->getNumber())
+    else if (this->getNumber() < nc->getNumber())
         return -1;
     else if (this->getShape() > nc->getShape())
         return 1;
@@ -154,12 +142,13 @@ int NumericCard::compare(Card* card) {
         return 0;
 
 }
-string NumericCard::toString(){
-		stringstream ss;
-		ss << getNumber();
-		ss << shapeNamesToSymbols[getShape()];
 
-		return ss.str();
+string NumericCard::toString() {
+    stringstream ss;
+    ss << getNumber();
+    ss << shapeNamesToSymbols[getShape()];
+
+    return ss.str();
 
 }
 

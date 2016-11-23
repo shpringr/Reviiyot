@@ -10,62 +10,41 @@ using namespace std;
 
 int main(int argc, char **argv) {
 
+    char *configurationFile = argv[1];
+    Game game = Game(configurationFile);
+    game.init();
+    game.printState();
+    Game initializedGame = game;
+    game.play();
+    cout << std::endl;
+    game.printWinner();
+    game.printNumberOfTurns();
+    cout << "----------" << endl;
+    cout << "Initial State:" << endl;
+    initializedGame.printState();
+    cout << "----------" << endl;
+    cout << "Final State:" << endl;
+    game.printState();
+
 //    tryCompareCards();
 
-//	FigureCard c1 = FigureCard('H', 'Q');
-//	cout << c1.toString() << endl;
-//
-//	NumericCard c2 = NumericCard(5, 'H');
-//	cout << c2.toString() << endl;
-////	int argc, char **argv
- char* configurationFile = argv[1];
+    return 0;
 
 
-//
-	Game game = Game(configurationFile);
-//	cout << "first : the size: " << game.trygetNumberOfCards() << endl;
-//	game.printState();
-//
-//	Card* temp = game.tryFetch();
-//	cout << temp->toString() << endl;
-//	cout << "second : the size: " << game.trygetNumberOfCards() << endl;
-//	game.printState();
-
-
-
-	game.init();
-    game.printState();
- 	/*Game initializedGame = game;
- 	game.play();
-
-	cout << std::endl;
- 	game.printWinner();
-	game.printNumberOfTurns();
-	cout << "----------" << endl;
-	cout<<"Initial State:"<<endl;
-  	initializedGame.printState();
-	cout<<"----------"<<endl;
-	cout<<"Final State:"<<endl;
-	game.printState();
-	*/
-	//Shape s = Club;
-	//Card Card(s);
-
-	return 0;
 }
 
 void tryCompareCards() {
 
-    FigureCard* C= new FigureCard('A', 'C');
-    NumericCard* C1= new NumericCard(3, 'C');
+    FigureCard *C = new FigureCard('A', 'C');
+    NumericCard *C1 = new NumericCard(3, 'C');
 
-    FigureCard * C2 = new FigureCard('A', 'C');
-    FigureCard * C3 = new FigureCard('A','D');
-    FigureCard * C4 = new FigureCard('K','D');
+    FigureCard *C2 = new FigureCard('A', 'C');
+    FigureCard *C3 = new FigureCard('A', 'D');
+    FigureCard *C4 = new FigureCard('K', 'D');
 
-    NumericCard * C5 = new NumericCard(3, 'C');
-    NumericCard * C6 = new NumericCard(3,'D');
-    NumericCard * C7 = new NumericCard(2,'D');
+    NumericCard *C5 = new NumericCard(3, 'C');
+    NumericCard *C6 = new NumericCard(3, 'D');
+    NumericCard *C7 = new NumericCard(2, 'D');
 
     int a1 = C->compare(C1); // 1
     int a2 = C1->compare(C); //-1
@@ -78,7 +57,7 @@ void tryCompareCards() {
     int a7 = C5->compare(C6); //-1
     int a8 = C6->compare(C7); //1
 
-    cout << "actul : "<<a1<<a2 <<a3<<a4<<a5<<a6<<a7<<a8 << endl;
+    cout << "actul : " << a1 << a2 << a3 << a4 << a5 << a6 << a7 << a8 << endl;
     cout << "1-10-110-11" << endl;
 }
 

@@ -17,26 +17,21 @@ int Hand::getNumberOfCards() {
     return hand.size();
 }
 
-int Hand::getNumberOfSamePref(Card* card) {
-    int count =0;
+int Hand::getNumberOfSamePref(Card *card) {
+    int count = 0;
 
-    for (Card *c : hand)
-    {
-        if (c->isSamePrefix(card))
-        {
+    for (Card *c : hand) {
+        if (c->isSamePrefix(card)) {
             count++;
         }
     }
     return count;
 }
 
-vector<Card *> Hand::getCardsWithSamePref(Card *card)
-{
+vector<Card *> Hand::getCardsWithSamePref(Card *card) {
     vector<Card *> cards;
-    for (Card *c : hand)
-    {
-        if (c->isSamePrefix(card))
-        {
+    for (Card *c : hand) {
+        if (c->isSamePrefix(card)) {
             cards.push_back(c);
         }
     }
@@ -58,11 +53,19 @@ void Hand::discardSet(Card *currCard) {
 string Hand::toString() {
 
     string s;
-    hand.sort(compare);
+ //   hand.sort(compare);
 
     for (Card *c : hand) {
         s += c->toString() + " ";
     }
 
     return s;
+}
+
+//TO DELETE
+Card *Hand::getFirstCard() {
+    for (Card *c : hand) {
+        return c;
+    }
+    return nullptr;
 }

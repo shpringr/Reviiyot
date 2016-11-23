@@ -7,53 +7,67 @@
 using namespace std;
 
 enum class Shape {
-	Club,
-	Diamond,
-	Heart,
-	Spade
+    Club,
+    Diamond,
+    Heart,
+    Spade
 };
 
 enum class Figure {
-	Jack,
-	Queen,
-	King,
-	Ace
+    Jack,
+    Queen,
+    King,
+    Ace
 };
 
 class Card {
 private:
-  Shape shape;
+    Shape shape;
 public:
-  Shape getShape();
-  void setShape(Shape &shape);
-  virtual string toString() = 0; //Returns the string representation of the card "<value><shape>" exp: "12S" or "QD"
-  virtual ~Card();
-  virtual int compare(Card* card) = 0;
-	virtual bool isSamePrefix(Card* card) = 0;
+    Shape getShape();
+
+    void setShape(Shape &shape);
+
+    virtual string toString() = 0; //Returns the string representation of the card "<value><shape>" exp: "12S" or "QD"
+    virtual ~Card();
+
+    virtual int compare(Card *card) = 0;
+
+    virtual bool isSamePrefix(Card *card) = 0;
 };
 
 class FigureCard : public Card {
 private:
-	Figure figure;
+    Figure figure;
 public:
-	FigureCard(char figu , char shap);
-	Figure getFigure();
-	void setFigure(Figure figure);
-	virtual string toString() override;
-    virtual int compare(Card* card) override;
-	virtual bool isSamePrefix(Card* card) override;
+    FigureCard(char figu, char shap);
+
+    Figure getFigure();
+
+    void setFigure(Figure figure);
+
+    virtual string toString() override;
+
+    virtual int compare(Card *card) override;
+
+    virtual bool isSamePrefix(Card *card) override;
 };
 
 class NumericCard : public Card {
 private:
-	int number;
+    int number;
 public:
-	NumericCard(int num, char shap);
-	int getNumber();
-	void setNumber(int num);
-	virtual string toString() override;
-    virtual int compare(Card* card) override;
-	virtual bool isSamePrefix(Card* card) override;
+    NumericCard(int num, char shap);
+
+    int getNumber();
+
+    void setNumber(int num);
+
+    virtual string toString() override;
+
+    virtual int compare(Card *card) override;
+
+    virtual bool isSamePrefix(Card *card) override;
 };
 
 #endif
