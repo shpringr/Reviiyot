@@ -35,24 +35,14 @@ map<Figure, char> figureNamesToSymbols = {
         {Figure::Ace,   'A'}
 };
 
-
+Card::Card(Shape shap):shape(shap) {}
 Card::~Card() {}
 
 Shape Card::getShape() {
     return shape;
 }
 
-void Card::setShape(Shape &shap) {
-    shape = shap;
-}
-
-FigureCard::FigureCard(char figu, char shap) {
-    setFigure(figureSymbolsToNames[figu]);
-    setShape(shapeSymbolsToNames[shap]);
-}
-
-void FigureCard::setFigure(Figure figur) {
-    figure = figur;
+FigureCard::FigureCard(char figu, char shap):Card(shapeSymbolsToNames[shap]),figure(figureSymbolsToNames[figu]) {
 }
 
 Figure FigureCard::getFigure() {
@@ -70,22 +60,19 @@ bool FigureCard::isSamePrefix(Card *card)
 
 int FigureCard::compare(Card *card) {
 
-    if (NumericCard *nc = dynamic_cast<NumericCard *>(card)) {
-        return 1;
+    if(FigureCard *fc = dynamic_cast<FigureCard *>(card)) {
+        if (this->getFigure() > fc->getFigure())
+            return 1;
+        else if (this->getFigure() < fc->getFigure())
+            return -1;
+        else if (this->getShape() > fc->getShape())
+            return 1;
+        else if (this->getShape() < fc->getShape())
+            return -1;
+        else
+            return 0;
     }
-
-    FigureCard *fc = dynamic_cast<FigureCard *>(card);
-
-    if (this->getFigure() > fc->getFigure())
-        return 1;
-    else if (this->getFigure() < fc->getFigure())
-        return -1;
-    else if (this->getShape() > fc->getShape())
-        return 1;
-    else if (this->getShape() < fc->getShape())
-        return -1;
-    else
-        return 0;
+    return 1;
 }
 
 string FigureCard::toString() {
@@ -97,17 +84,11 @@ string FigureCard::toString() {
 }
 
 
-NumericCard::NumericCard(int num, char shap) {
-    setNumber(num);
-    setShape(shapeSymbolsToNames[shap]);
+NumericCard::NumericCard(int num, char shap) :Card(shapeSymbolsToNames[shap]),number(num) {
 }
 
 int NumericCard::getNumber() {
     return number;
-}
-
-void NumericCard::setNumber(int num) {
-    number = num;
 }
 
 bool NumericCard::isSamePrefix(Card *card)
@@ -120,23 +101,20 @@ bool NumericCard::isSamePrefix(Card *card)
 }
 
 int NumericCard::compare(Card *card) {
+    if (NumericCard *nc = dynamic_cast<NumericCard *>(card)) {
 
-    if (FigureCard *fc = dynamic_cast<FigureCard *>(card)) {
-        return -1;
+        if (this->getNumber() > nc->getNumber())
+            return 1;
+        else if (this->getNumber() < nc->getNumber())
+            return -1;
+        else if (this->getShape() > nc->getShape())
+            return 1;
+        else if (this->getShape() < nc->getShape())
+            return -1;
+        else
+            return 0;
     }
-
-    NumericCard *nc = dynamic_cast<NumericCard *>(card);
-
-    if (this->getNumber() > nc->getNumber())
-        return 1;
-    else if (this->getNumber() < nc->getNumber())
-        return -1;
-    else if (this->getShape() > nc->getShape())
-        return 1;
-    else if (this->getShape() < nc->getShape())
-        return -1;
-    else
-        return 0;
+    return -1;
 }
 
 string NumericCard::toString() {

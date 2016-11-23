@@ -5,10 +5,12 @@ using namespace std;
 
 bool Hand::addCard(Card &card) {
     hand.push_back(&card);
+    return true;
 }
 
 bool Hand::removeCard(Card &card) {
     hand.remove(&card);
+    return false;
 }
 
 int Hand::getNumberOfCards() {
@@ -57,6 +59,8 @@ string Hand::toString() {
 
     return s;
 }
+
+Hand::~Hand(){}
 
 //TO DELETE
 Card *Hand::getFirstCard() {

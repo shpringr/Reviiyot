@@ -2,6 +2,7 @@
 
 using namespace std;
 
+Deck::Deck():cards(){}
  vector<Card *>& Deck::getCards()
 {
 	return cards;
@@ -22,7 +23,7 @@ string Deck::toString()
 {
 	string s;
 
-	for (int i = 0; i < cards.size(); ++i)
+	for (unsigned int i = 0; i < cards.size(); ++i)
 	{
 		s += cards[i]->toString() + " ";
 	}

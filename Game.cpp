@@ -4,7 +4,7 @@
 
 using namespace std;
 
-Game::Game(char *configurationFile) {
+Game::Game(char *configurationFile): players(), deck(), isVerbalOn(), N(){
     dummyConfig1();
     //readConfigFile(configurationFile);
 }
@@ -56,7 +56,7 @@ void Game::readConfigFile(char *configurationFile) {}
 
 void Game::init() {
 
-    for (int i = 0; i < players.size(); ++i) {
+    for (unsigned int i = 0; i < players.size(); ++i) {
 
         for (int j = 0; j < 7 && deck.getCards().size() > 0; ++j) {
             Card *currCard = deck.fetchCard();
@@ -94,7 +94,7 @@ void Game::play() {
 
             if (askedPlayer->getNumberOfCards() > 0)
             {
-                for (int j = 0; j < cardsOfSamePref.size() && deck.getNumberOfCards() > 0; ++j)
+                for (unsigned int i = 0; i < cardsOfSamePref.size() && deck.getNumberOfCards() > 0; ++i)
                 {
                     addCardAndDiscardIfNeeded(askedPlayer, deck.fetchCard());
                 }
@@ -128,7 +128,7 @@ void Game::addCardAndDiscardIfNeeded(Player *player, Card *card) {
 void Game::printState() {
 
     cout << deck.toString() << endl;
-    for (int i = 0; i < players.size(); ++i) {
+    for (unsigned int i = 0; i < players.size(); ++i) {
         cout << players[i]->toString() << endl;
     }
 

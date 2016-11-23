@@ -21,6 +21,7 @@ public:
     vector<Card *> getCardsWithSamePref(Card *card);
     void discardSet(Card *currCard);
     Card *getFirstCard();
+    virtual ~Hand() = 0;
 };
 
 #endif
