@@ -66,7 +66,7 @@ bool compare(Card *c1, Card *c2) { return (c1->compare(c2) < 0); }
 string Hand::toString() {
 
     string s;
-    std::sort (hand.begin()+4, hand.end(), compare);
+    std::sort (hand.begin(), hand.end(), compare);
 
     for (Card *c : hand) {
         s += c->toString() + " ";
@@ -75,46 +75,46 @@ string Hand::toString() {
     return s;
 }
 
-/*
 
 Card* Hand::getHighestAmount()
 {
-    std::sort (hand.begin()+4, hand.end(), compare);
+    std::sort (hand.begin(), hand.end(), compare);
+    int i=0;
+    int maxCounter=0;
+    int counter = 0;
+    Card * cardAns = hand[0];
 
-    auto it = hand.begin();
-    auto nx = next(it,1);
-
-    std::sort (hand.begin()+4, hand.end(), compare);
-    int tempCounter;
-    int higherCounter;
-    int count = 0;
-    Card * temp;
-
-    for (Card *c : hand) {
-
-        if (c->isSamePrefix(card))
-        {
-            count++;
+    for (unsigned int j = 1; j < hand.size(); ++j) {
+        if (hand[i]->compare(hand[j])==0){
+            counter++;
+            if(counter>maxCounter){
+                maxCounter=counter;
+            }
+            else if(counter==maxCounter) {
+                cardAns = hand[j];
+            }
+        }
+        else{
+            i=j;
         }
     }
-
-    return count;
+    return cardAns;
 }
-*/
+
 
 
 
 Card * Hand::getTheHighestValue()
 {
 
-    std::sort (hand.begin()+4, hand.end(), compare);
+    std::sort (hand.begin(), hand.end(), compare);
     return hand.back();
 }
 
 
 Card * Hand::getTheLowestValue()
 {
-    std::sort (hand.begin()+4, hand.end(), compare);
+    std::sort (hand.begin(), hand.end(), compare);
     return hand.front();
 }
 

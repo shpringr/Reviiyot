@@ -19,7 +19,7 @@ public:
     bool addCard(Card &card);
     bool removeCard(Card &card);
     int getNumberOfSamePrefix(Card *card);
- //   Card* getHighestAmount();
+   Card* getHighestAmount();
 
     int getNumberOfCards();
     Card * getTheHighestValue();
