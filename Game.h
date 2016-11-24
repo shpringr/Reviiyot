@@ -38,6 +38,8 @@ public:
     Card* getThehighestValue();
     int gettheplayerwithmostcards();
     Card * getMost();
+
+    Card *getLoest();
 };
 
 #endif

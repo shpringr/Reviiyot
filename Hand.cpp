@@ -85,24 +85,63 @@ Card* Hand::getHighestAmount()
     std::sort (hand.begin(), hand.end(), compare);
     int i=0;
     int maxCounter=0;
-    int counter = 0;
+    int counter = 1;
     Card * cardAns = hand[0];
 
     for (unsigned int j = 1; j < hand.size(); ++j) {
         if (hand[i]->isSamePrefix(hand[j])){
             counter++;
-            if(counter>maxCounter){
-                maxCounter=counter;
-            }
-            else if(counter==maxCounter) {
-                cardAns = hand[j];
-            }
+
         }
         else{
+            if(counter>maxCounter){
+                maxCounter=counter;
+                cardAns = hand[i];
+
+            }
+            else if(counter==maxCounter) {
+                cardAns = hand[i];
+            }
             i=j;
-            counter=0;
+            counter=1;
         }
     }
+    if(counter>=maxCounter){
+        cardAns=hand.back();
+    }
+
+    return cardAns;
+}
+
+
+
+Card* Hand::getLowestAmount()
+{
+    std::sort (hand.begin(), hand.end(), compare);
+    int i=0;
+    int minCounter=4;
+    int counter = 1;
+    Card * cardAns = hand[0];
+
+    for (unsigned int j = 1; j < hand.size(); ++j) {
+        if (hand[i]->isSamePrefix(hand[j])){
+            counter++;
+
+        }
+        else{
+            if(counter<minCounter){
+                minCounter=counter;
+                cardAns = hand[i];
+
+            }
+            i=j;
+            counter=1;
+        }
+    }
+    if(counter<minCounter){
+        cardAns=hand.back();
+    }
+
     return cardAns;
 }
 

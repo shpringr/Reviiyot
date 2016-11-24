@@ -28,7 +28,9 @@ public:
     vector<Card *> searchCardsWithSamePref(Card *card);
     void discardSet(Card *currCard);
     Card *getFirstCard();
+    Card *getLowestAmount();
     virtual ~Hand() = 0;
+
 
 };
 

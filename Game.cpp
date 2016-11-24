@@ -60,11 +60,15 @@ Card* Game::getThehighestValue(){
 }
 
 int Game::gettheplayerwithmostcards(){
-    return players[0]->getThePlayerWithMostCards(players);
+    return players[0]->getThePlayerWithMostCards(players,0);
 }
 
 Card * Game::getMost(){
     return players[1]->getHighestAmount();
+}
+
+Card * Game::getLoest(){
+    return players[1]->getLowestAmount();
 }
 
 
@@ -92,9 +96,9 @@ void Game::play() {
         increaseNumberOfTurns();
 
         Player *askingPlayer = players[currPlayerIndex];
-        Player *askedPlayer = players[(currPlayerIndex + 1) % players.size()]; //meanwhile till we have getFromWho()
+        Player *askedPlayer = players[askingPlayer->getFromWho(players,currPlayerIndex)]; //meanwhile till we have getFromWho()
         //Player askedPlayer = askingPlayer.getFromWho(vector(copy));
-        Card *cardToAsk = askingPlayer->getFirstCard(); //meanwhile till we have getCardToAsk()
+        Card *cardToAsk = askingPlayer->getWhichCardPrefix(); //meanwhile till we have getCardToAsk()
         //Card *cardToAsk = askingPlayer.getCardToAsk(askedPlayer.getCards());
 
         if (isVerbalOn)
@@ -148,6 +152,7 @@ void Game::printState() {
 //    cout << "the hiest value: " <<  getThehighestValue()->toString() << endl;
   //  cout << "gettheplayerwithmostcards: " << gettheplayerwithmostcards() << endl;
     cout << "getThemost " << getMost()->toString() << endl;
+    cout << "getL " << getLoest()->toString() << endl;
     cout << "Deck: " << deck.toString() << endl;
     for (unsigned int i = 0; i < players.size(); ++i) {
         cout << players[i]->toString() << endl;

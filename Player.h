@@ -19,8 +19,8 @@ protected:
 public:
 	string getName();
 	virtual int getFromWho(vector<Player *> players, int iCurrPlayer)=0;
-	virtual Card * getWhichCardPrefix(Player * player)=0;
-    virtual int getThePlayerWithMostCards(vector<Player *> players);
+	virtual Card * getWhichCardPrefix()=0;
+    virtual int getThePlayerWithMostCards(vector<Player *> players,int iCurrPlaye);
 	virtual ~Player();
 	string toString();
 };
@@ -31,7 +31,7 @@ public:
 
 	PlayerType1(string nam, int position);
 	virtual int getFromWho(vector<Player *> players, int iCurrPlaye) override;
-	virtual Card * getWhichCardPrefix(Player * player) override;
+	virtual Card * getWhichCardPrefix() override;
 };
 
 class PlayerType2 : public Player {  //For strategy 2
@@ -39,7 +39,7 @@ class PlayerType2 : public Player {  //For strategy 2
 public:
 	PlayerType2(string nam, int position);
 	virtual int getFromWho(vector<Player *> players, int iCurrPlaye) override;
-	virtual Card * getWhichCardPrefix(Player * player) override;
+	virtual Card * getWhichCardPrefix() override;
 };
 
 class PlayerType3 : public Player {  //For strategy 3
@@ -50,7 +50,7 @@ private:
 public:
 	PlayerType3(string nam, int position);
 	virtual int getFromWho(vector<Player *> players, int iCurrPlaye) override;
-	virtual Card * getWhichCardPrefix(Player *) override;
+	virtual Card * getWhichCardPrefix() override;
 };
 
 class PlayerType4 : public Player {  //For strategy 4
@@ -61,7 +61,7 @@ private:
 public:
 	PlayerType4(string nam, int position);
 	virtual int getFromWho(vector<Player *> players, int iCurrPlaye) override;
-	virtual Card * getWhichCardPrefix(Player * player) override;
+	virtual Card * getWhichCardPrefix() override;
 };
 
 #endif
