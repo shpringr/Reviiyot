@@ -4,12 +4,21 @@
 
 using namespace std;
 
+//vector<Player *> players;
+//Deck deck;
+//bool isVerbalOn;
+//int N;
+
+
 
 Game::Game(char *configurationFile): players(), deck(), isVerbalOn(), N(){
     dummyConfig1();
     //readConfigFile(configurationFile);
 }
-Game::Game(const Game& game): players(game.players), deck(game.deck), isVerbalOn(game.isVerbalOn), N(game.N){}
+
+Game::Game(const Game& game) {
+//    vector<Player *> *  players = new vector<Player *>
+}
 
 void Game::dummyConfig1()
 {
@@ -41,9 +50,9 @@ void Game::dummyConfig1()
     deck.getCards().push_back(new NumericCard(2, 'S'));
     deck.getCards().push_back(new FigureCard('Q', 'D'));
 
-    players.push_back(new PlayerType1("Alice",1));
-    players.push_back(new PlayerType2("Bob",2));
-    players.push_back(new PlayerType3("Charlie",3));
+    players.push_back(new PlayerType1("Alice"));
+    players.push_back(new PlayerType2("Bob"));
+    players.push_back(new PlayerType3("Charlie"));
    // players.push_back(new PlayerType3("Hey",4));
 }
 
@@ -148,11 +157,10 @@ void Game::addCardAndDiscardIfNeeded(Player *player, Card *card) {
 //***This function should be implemented with extra care because yonatan said.***
 //
 void Game::printState() {
-
 //    cout << "the hiest value: " <<  getThehighestValue()->toString() << endl;
-  //  cout << "gettheplayerwithmostcards: " << gettheplayerwithmostcards() << endl;
-    cout << "getThemost " << getMost()->toString() << endl;
-    cout << "getL " << getLoest()->toString() << endl;
+//    cout << "gettheplayerwithmostcards: " << gettheplayerwithmostcards() << endl;
+//    cout << "getThemost " << getMost()->toString() << endl;
+//    cout << "getL " << getLoest()->toString() << endl;
     cout << "Deck: " << deck.toString() << endl;
     for (unsigned int i = 0; i < players.size(); ++i) {
         cout << players[i]->toString() << endl;

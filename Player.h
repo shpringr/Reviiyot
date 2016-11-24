@@ -13,8 +13,7 @@ private:
     const string name;
 
 protected:
-    int position;
-    Player(string nam, int position);
+    Player(string nam);
 
 public:
 	string getName();
@@ -29,7 +28,7 @@ class PlayerType1 : public Player {  //For strategy 1
 //...
 public:
 
-	PlayerType1(string nam, int position);
+	PlayerType1(string nam);
 	virtual int getFromWho(vector<Player *> players, int iCurrPlaye) override;
 	virtual Card * getWhichCardPrefix() override;
 };
@@ -37,7 +36,7 @@ public:
 class PlayerType2 : public Player {  //For strategy 2
 //...
 public:
-	PlayerType2(string nam, int position);
+	PlayerType2(string nam);
 	virtual int getFromWho(vector<Player *> players, int iCurrPlaye) override;
 	virtual Card * getWhichCardPrefix() override;
 };
@@ -48,7 +47,7 @@ private:
 	int from;
 	int numberOfPlayers;
 public:
-	PlayerType3(string nam, int position);
+	PlayerType3(string nam);
 	virtual int getFromWho(vector<Player *> players, int iCurrPlaye) override;
 	virtual Card * getWhichCardPrefix() override;
 };
@@ -59,7 +58,7 @@ private:
     int from;
     int numberOfPlayers;
 public:
-	PlayerType4(string nam, int position);
+	PlayerType4(string nam);
 	virtual int getFromWho(vector<Player *> players, int iCurrPlaye) override;
 	virtual Card * getWhichCardPrefix() override;
 };

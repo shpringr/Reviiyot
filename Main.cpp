@@ -14,7 +14,7 @@ int main(int argc, char **argv) {
     Game game = Game(configurationFile);
     game.init();
     Game initializedGame = game;
-    cout << "the hiest value: " <<  game.getThehighestValue()->toString() << endl;
+    //cout << "the hiest value: " <<  game.getThehighestValue()->toString() << endl;
     game.play();
 
     cout << std::endl;
@@ -22,7 +22,7 @@ int main(int argc, char **argv) {
     game.printNumberOfTurns();
     cout << "----------" << endl;
     cout << "Initial State:" << endl;
-    //initializedGame.printState();
+    initializedGame.printState();
     cout << "----------" << endl;
     cout << "Final State:" << endl;
     game.printState();

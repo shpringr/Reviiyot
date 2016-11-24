@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Player::Player(string nam, int position) : name(nam), position(position) {}
+Player::Player(string nam) : name(nam) {}
 
 Player::~Player() {}
 
@@ -22,7 +22,7 @@ int  Player::getThePlayerWithMostCards(vector<Player *> players , int iCurrPlaye
                 from = j;
             }
             else{
-                if(players[i]->position > players[j]->position && players[i] != players[iCurrPlaye]){
+                if(i > j && players[i] != players[iCurrPlaye]){
                     from = i;
                 }
                 else{
@@ -37,7 +37,7 @@ int  Player::getThePlayerWithMostCards(vector<Player *> players , int iCurrPlaye
 }
 
 
-PlayerType1::PlayerType1(string nam , int position) : Player(nam, position) {}
+PlayerType1::PlayerType1(string nam) : Player(nam) {}
 
 int PlayerType1::getFromWho(vector<Player *> players, int iCurrPlaye){
     return getThePlayerWithMostCards(players, iCurrPlaye);
@@ -47,7 +47,7 @@ Card * PlayerType1::getWhichCardPrefix() {
     return this->getHighestAmount();
 }
 
-PlayerType2::PlayerType2(string nam , int position) : Player(nam, position) {}
+PlayerType2::PlayerType2(string nam ) : Player(nam) {}
 
 
 int PlayerType2::getFromWho(vector<Player *> players, int iCurrPlaye){
@@ -59,11 +59,14 @@ Card * PlayerType2::getWhichCardPrefix() {
     return this->getLowestAmount();
 }
 
-PlayerType3::PlayerType3(string nam, int position): Player(nam, position), from(position-1), numberOfPlayers(0){
+PlayerType3::PlayerType3(string nam): Player(nam), from(0), numberOfPlayers(0){
 
 }
 
 int PlayerType3::getFromWho(vector<Player *> players, int iCurrPlaye){
+    if (from==0){
+        from = iCurrPlaye;
+    }
     from = (int) ((from + 1) % players.size());
     if (from==iCurrPlaye){
         from = (int) ((from + 1) % players.size());
@@ -75,10 +78,13 @@ Card * PlayerType3::getWhichCardPrefix()  {
     return this->getTheHighestValue();
 }
 
-PlayerType4::PlayerType4(string nam, int position) : Player(nam, position), from(position-1), numberOfPlayers(0) {}
+PlayerType4::PlayerType4(string nam) : Player(nam), from(0), numberOfPlayers(0) {}
 
 
 int PlayerType4::getFromWho(vector<Player *> players, int iCurrPlaye){
+    if (from==0){
+        from = iCurrPlaye;
+    }
     from = (int) ((from + 1) % players.size());
     if (from==iCurrPlaye){
         from = (int) ((from + 1) % players.size());
