@@ -1,3 +1,4 @@
+#include <algorithm>
 #include "Card.h"
 #include "Hand.h"
 
@@ -11,12 +12,20 @@ bool Hand::addCard(Card &card)
 }
 
 bool Hand::removeCard(Card &card) {
-    hand.remove(&card);
+
+    vector<Card *>::iterator it;
+    for (it = hand.begin(); it != hand.end(); ++it){
+        if ((*it)->compare(&card) == 0){
+            hand.erase(it);
+            return true;
+        }
+    }
+
     return false;
 }
 
 int Hand::getNumberOfCards() {
-    return hand.size();
+    return (int) hand.size();
 }
 
 int Hand::getNumberOfSamePrefix(Card* card)
@@ -57,7 +66,7 @@ bool compare(Card *c1, Card *c2) { return (c1->compare(c2) < 0); }
 string Hand::toString() {
 
     string s;
-    hand.sort(compare);
+    std::sort (hand.begin()+4, hand.end(), compare);
 
     for (Card *c : hand) {
         s += c->toString() + " ";
@@ -67,11 +76,15 @@ string Hand::toString() {
 }
 
 /*
-Card* Hand::getHighestAmount(){
+
+Card* Hand::getHighestAmount()
+{
+    std::sort (hand.begin()+4, hand.end(), compare);
+
     auto it = hand.begin();
     auto nx = next(it,1);
 
-    hand.sort(compare);
+    std::sort (hand.begin()+4, hand.end(), compare);
     int tempCounter;
     int higherCounter;
     int count = 0;
@@ -86,24 +99,22 @@ Card* Hand::getHighestAmount(){
     }
 
     return count;
-
-
-
-
-}*/
+}
+*/
 
 
 
 Card * Hand::getTheHighestValue()
 {
-    hand.sort(compare);
+
+    std::sort (hand.begin()+4, hand.end(), compare);
     return hand.back();
 }
 
 
 Card * Hand::getTheLowestValue()
 {
-    hand.sort(compare);
+    std::sort (hand.begin()+4, hand.end(), compare);
     return hand.front();
 }
 

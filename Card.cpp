@@ -59,9 +59,9 @@ int FigureCard::compare(Card *card) {
 
     if(FigureCard *fc = dynamic_cast<FigureCard *>(card))
     {
-        if (this->getPrefix() > fc->getPrefix())
+        if (this->figure > fc->figure)
             return 1;
-        else if (this->getPrefix() < fc->getPrefix())
+        else if (this->figure < fc->figure)
             return -1;
         else if (this->getShape() > fc->getShape())
             return 1;
@@ -100,12 +100,12 @@ bool NumericCard::isSamePrefix(Card *card)
 }
 
 int NumericCard::compare(Card *card) {
-    if (NumericCard *nc = dynamic_cast<NumericCard *>(card))
-    {
 
-        if (this->getPrefix() > nc->getPrefix())
+    if (NumericCard* nc = dynamic_cast<NumericCard *>(card))
+    {
+        if (this->number > nc->number)
             return 1;
-        else if (this->getPrefix() < nc->getPrefix())
+        else if (this->number < nc->number)
             return -1;
         else if (this->getShape() > nc->getShape())
             return 1;

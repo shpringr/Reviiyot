@@ -11,7 +11,7 @@ using namespace std;
 
 class Hand {
 private:
-    list<Card *> hand;
+    vector<Card *> hand;
 protected:
     Hand();
 
@@ -19,7 +19,7 @@ public:
     bool addCard(Card &card);
     bool removeCard(Card &card);
     int getNumberOfSamePrefix(Card *card);
-//    Card* getHighestAmount();
+ //   Card* getHighestAmount();
 
     int getNumberOfCards();
     Card * getTheHighestValue();
@@ -29,6 +29,7 @@ public:
     void discardSet(Card *currCard);
     Card *getFirstCard();
     virtual ~Hand() = 0;
+
 };
 
 #endif
