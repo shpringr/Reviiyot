@@ -45,7 +45,7 @@ Card * Game::getLoest(){
 void Game::readConfigFile(char *configurationFile) {
 
     ifstream source;
-    source.open("config1.txt");
+    source.open(configurationFile);
     vector<string> lines;
     string line;
 
@@ -119,24 +119,27 @@ void Game::addCardToDeck(char shape, string prefix) {
 
 void Game::addPlayer(string name, int type) {
 
-    Player* playerToAdd;
-//    switch(type) {
-//        case 1 :
-//            playerToAdd = new PlayerType1(name);
-//            break;
-//        case 2 :
-//            playerToAdd = new PlayerType2(name);
-//            break;
-//        case 3 :
-//            playerToAdd = new PlayerType3(name);
-//            break;
-//        case 4 :
-//            playerToAdd = new PlayerType4(name);
-//            break;
-//        default :
-//            cout << "Invalid Player type" << endl;
-//
-//        players.push_back(playerToAdd);
+    Player *playerToAdd;
+    switch (type) {
+        case 1 :
+            playerToAdd = new PlayerType1(name);
+            break;
+        case 2 :
+            playerToAdd = new PlayerType2(name);
+            break;
+        case 3 :
+            playerToAdd = new PlayerType3(name);
+            break;
+        case 4 :
+            playerToAdd = new PlayerType4(name);
+            break;
+        default :
+            cout << "Invalid Player type" << endl;
+            break;
+    }
+
+            players.push_back(playerToAdd);
+
 }
 
 void Game::init() {
