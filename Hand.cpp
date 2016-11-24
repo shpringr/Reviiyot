@@ -67,8 +67,10 @@ string Hand::toString() {
 }
 
 /*
-
 Card* Hand::getHighestAmount(){
+    auto it = hand.begin();
+    auto nx = next(it,1);
+
     hand.sort(compare);
     int tempCounter;
     int higherCounter;
@@ -88,10 +90,9 @@ Card* Hand::getHighestAmount(){
 
 
 
-}
+}*/
 
 
-*/
 
 Card * Hand::getTheHighestValue()
 {
