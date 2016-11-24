@@ -35,6 +35,7 @@ public:
     void printWinner();
     void printNumberOfTurns();
     vector<Player *> getWinners();
+    Card* getThehighestValue();
 };
 
 #endif

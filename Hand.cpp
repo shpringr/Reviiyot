@@ -33,6 +33,7 @@ int Hand::getNumberOfSamePrefix(Card* card)
     return count;
 }
 
+
 vector<Card *> Hand::searchCardsWithSamePref(Card *card) {
     vector<Card *> cards;
     for (Card *c : hand) {
@@ -64,6 +65,47 @@ string Hand::toString() {
 
     return s;
 }
+
+/*
+
+Card* Hand::getHighestAmount(){
+    hand.sort(compare);
+    int tempCounter;
+    int higherCounter;
+    int count = 0;
+    Card * temp;
+
+    for (Card *c : hand) {
+
+        if (c->isSamePrefix(card))
+        {
+            count++;
+        }
+    }
+
+    return count;
+
+
+
+
+}
+
+
+*/
+
+Card * Hand::getTheHighestValue()
+{
+    hand.sort(compare);
+    return hand.back();
+}
+
+
+Card * Hand::getTheLowestValue()
+{
+    hand.sort(compare);
+    return hand.front();
+}
+
 
 Hand::~Hand(){}
 

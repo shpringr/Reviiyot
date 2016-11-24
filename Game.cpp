@@ -4,6 +4,7 @@
 
 using namespace std;
 
+
 Game::Game(char *configurationFile): players(), deck(), isVerbalOn(), N(){
     dummyConfig1();
     //readConfigFile(configurationFile);
@@ -40,9 +41,10 @@ void Game::dummyConfig1()
     deck.getCards().push_back(new NumericCard(2, 'S'));
     deck.getCards().push_back(new FigureCard('Q', 'D'));
 
-    players.push_back(new PlayerType1("Alice"));
-    players.push_back(new PlayerType2("Bob"));
-    players.push_back(new PlayerType3("Charlie"));
+    players.push_back(new PlayerType1("Alice",1));
+    players.push_back(new PlayerType2("Bob",2));
+  //  players.push_back(new PlayerType3("Charlie",3));
+   // players.push_back(new PlayerType3("Hey",4));
 }
 
 void Game::dummyConfig2() {
@@ -52,6 +54,11 @@ void Game::dummyConfig2() {
 void Game::dummyConfig3() {
 
 }
+
+Card* Game::getThehighestValue(){
+    return players[0]->getTheHighestValue();
+}
+
 
 void Game::readConfigFile(char *configurationFile) {}
 

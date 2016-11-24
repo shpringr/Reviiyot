@@ -14,6 +14,7 @@ int main(int argc, char **argv) {
     Game game = Game(configurationFile);
     game.init();
     Game initializedGame = game;
+    cout << "the hiest value: " <<  game.getThehighestValue()->toString() << endl;
     game.play();
 
     cout << std::endl;

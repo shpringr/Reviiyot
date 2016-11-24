@@ -18,7 +18,10 @@ public:
     bool addCard(Card &card);
     bool removeCard(Card &card);
     int getNumberOfSamePrefix(Card *card);
+//    Card* getHighestAmount();
     int getNumberOfCards();
+    Card * getTheHighestValue();
+    Card * getTheLowestValue();
     string toString();
     vector<Card *> searchCardsWithSamePref(Card *card);
     void discardSet(Card *currCard);
