@@ -13,7 +13,27 @@ string Player::getName() {
 PlayerType1::PlayerType1(string nam , int position) : Player(nam, position) {}
 
 int PlayerType1::getFromWho(vector<Player *> players, int iCurrPlaye){
-    return 0;
+    int from;
+    for (unsigned int i=0; i<players.size()-1; i++){
+        for (unsigned int j=1; j<players.size();j++){
+            if(players[i]->getNumberOfCards() > players[j]->getNumberOfCards()){
+                from = i;
+            }
+            else if(players[i]->getNumberOfCards() < players[j]->getNumberOfCards()){
+                from = j;
+            }
+            else{
+                if(players[i]->position > players[j]->position){
+                    from = i;
+                }
+                else{
+                    from = j;
+                }
+            }
+        }
+    }
+
+    return from;
 }
 
 Card * PlayerType1::getWhichCardPrefix(Player * player) {
