@@ -43,7 +43,7 @@ int PlayerType1::getFromWho(vector<Player *> players, int iCurrPlaye){
 }
 
 Card * PlayerType1::getWhichCardPrefix(Player * player) {
-    return 0;
+    return player->getHighestAmount();
 }
 
 PlayerType2::PlayerType2(string nam , int position) : Player(nam, position) {}

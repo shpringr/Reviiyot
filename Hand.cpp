@@ -11,6 +11,10 @@ bool Hand::addCard(Card &card)
     return true;
 }
 
+vector<Card *> Hand::getHand(){
+    return hand;
+}
+
 bool Hand::removeCard(Card &card) {
 
     vector<Card *>::iterator it;
@@ -85,7 +89,7 @@ Card* Hand::getHighestAmount()
     Card * cardAns = hand[0];
 
     for (unsigned int j = 1; j < hand.size(); ++j) {
-        if (hand[i]->compare(hand[j])==0){
+        if (hand[i]->isSamePrefix(hand[j])){
             counter++;
             if(counter>maxCounter){
                 maxCounter=counter;
@@ -96,11 +100,11 @@ Card* Hand::getHighestAmount()
         }
         else{
             i=j;
+            counter=0;
         }
     }
     return cardAns;
 }
-
 
 
 

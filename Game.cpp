@@ -63,6 +63,10 @@ int Game::gettheplayerwithmostcards(){
     return players[0]->getThePlayerWithMostCards(players);
 }
 
+Card * Game::getMost(){
+    return players[1]->getHighestAmount();
+}
+
 
 void Game::readConfigFile(char *configurationFile) {}
 
@@ -143,6 +147,7 @@ void Game::printState() {
 
 //    cout << "the hiest value: " <<  getThehighestValue()->toString() << endl;
   //  cout << "gettheplayerwithmostcards: " << gettheplayerwithmostcards() << endl;
+    cout << "getThemost " << getMost()->toString() << endl;
     cout << "Deck: " << deck.toString() << endl;
     for (unsigned int i = 0; i < players.size(); ++i) {
         cout << players[i]->toString() << endl;

@@ -20,7 +20,7 @@ public:
     bool removeCard(Card &card);
     int getNumberOfSamePrefix(Card *card);
    Card* getHighestAmount();
-
+    vector<Card *> getHand();
     int getNumberOfCards();
     Card * getTheHighestValue();
     Card * getTheLowestValue();

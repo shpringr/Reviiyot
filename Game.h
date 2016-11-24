@@ -37,6 +37,7 @@ public:
     vector<Player *> getWinners();
     Card* getThehighestValue();
     int gettheplayerwithmostcards();
+    Card * getMost();
 };
 
 #endif
