@@ -10,9 +10,7 @@ string Player::getName() {
     return name;
 }
 
-PlayerType1::PlayerType1(string nam , int position) : Player(nam, position) {}
-
-int PlayerType1::getFromWho(vector<Player *> players, int iCurrPlaye){
+int  Player::getThePlayerWithMostCards(vector<Player *> players){
     int from;
     for (unsigned int i=0; i<players.size()-1; i++){
         for (unsigned int j=1; j<players.size();j++){
@@ -34,6 +32,14 @@ int PlayerType1::getFromWho(vector<Player *> players, int iCurrPlaye){
     }
 
     return from;
+
+}
+
+
+PlayerType1::PlayerType1(string nam , int position) : Player(nam, position) {}
+
+int PlayerType1::getFromWho(vector<Player *> players, int iCurrPlaye){
+    return getThePlayerWithMostCards(players);
 }
 
 Card * PlayerType1::getWhichCardPrefix(Player * player) {
@@ -44,7 +50,7 @@ PlayerType2::PlayerType2(string nam , int position) : Player(nam, position) {}
 
 
 int PlayerType2::getFromWho(vector<Player *> players, int iCurrPlaye){
-    return 0;
+    return getThePlayerWithMostCards(players);
 }
 
 Card * PlayerType2::getWhichCardPrefix(Player * player) {

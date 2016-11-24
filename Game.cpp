@@ -43,7 +43,7 @@ void Game::dummyConfig1()
 
     players.push_back(new PlayerType1("Alice",1));
     players.push_back(new PlayerType2("Bob",2));
-  //  players.push_back(new PlayerType3("Charlie",3));
+    players.push_back(new PlayerType3("Charlie",3));
    // players.push_back(new PlayerType3("Hey",4));
 }
 
@@ -57,6 +57,10 @@ void Game::dummyConfig3() {
 
 Card* Game::getThehighestValue(){
     return players[0]->getTheHighestValue();
+}
+
+int Game::gettheplayerwithmostcards(){
+    return players[0]->getThePlayerWithMostCards(players);
 }
 
 
@@ -137,6 +141,8 @@ void Game::addCardAndDiscardIfNeeded(Player *player, Card *card) {
 //
 void Game::printState() {
 
+//    cout << "the hiest value: " <<  getThehighestValue()->toString() << endl;
+  //  cout << "gettheplayerwithmostcards: " << gettheplayerwithmostcards() << endl;
     cout << "Deck: " << deck.toString() << endl;
     for (unsigned int i = 0; i < players.size(); ++i) {
         cout << players[i]->toString() << endl;

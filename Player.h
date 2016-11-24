@@ -20,6 +20,7 @@ public:
 	string getName();
 	virtual int getFromWho(vector<Player *> players, int iCurrPlayer)=0;
 	virtual Card * getWhichCardPrefix(Player * player)=0;
+    virtual int getThePlayerWithMostCards(vector<Player *> players);
 	virtual ~Player();
 	string toString();
 };
