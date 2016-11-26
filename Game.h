@@ -28,7 +28,7 @@ private:
 
 public:
     Game(char *configurationFile);
-    //Game(const Game& game);
+    Game(const Game& game);
     void init();
     void play();
     void printState();
@@ -40,12 +40,11 @@ public:
 
     Card *getLoest();
 
-   // vector<Player *> * copyPlayers() const;
+   vector<Player *>  copyPlayers() const;
 
 
     void dummyConfig1();
 
-    //Deck *copyDeck() const;
 };
 
 #endif

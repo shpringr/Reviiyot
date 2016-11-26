@@ -14,56 +14,38 @@ Game::Game(char *configurationFile): players(), deck(), isVerbalOn(), N(){
     readConfigFile(configurationFile);
 }
 
+
 /*
-
+vector<Card *> Deck::copyDeck() const {
+    vector<Card *> newDeck;
+    for (unsigned int i = 0; i < cards.size(); ++i) {
+        newDeck.push_back(cards[i]);
+    }
+    return newDeck;
+}
 */
-/**
- * deep copy of this list (allocates links)
-*//*
 
-vector<Player *> * Game::copyPlayers() const
-{
 
-    Player *playerToAdd;
-    vector<Player *> *  playersNew = new vector<Player *>;
+vector<Player *> Game::copyPlayers() const {
 
-    for (unsigned  int i = 0; i < players.size() ; ++i) {
-            playerToAdd = new Player(players[i]);
-            playersNew->push_back(playerToAdd);
+    vector<Player *> playersNew;
+
+    for (unsigned int i = 0; i < players.size(); ++i) {
+        playersNew.push_back(players[i]->clone());
     }
     return playersNew;
-Game::Game(const Game& game): players(), deck(), isVerbalOn(), N() {
 }
 
-Deck * Game::copyDeck() const {
+//Game::Game(const Game& game): players(), deck(), isVerbalOn(), N() {}
 
-    Deck * ref = new Deck();
-    unsigned int size = (unsigned int) (deck.getCards().size());
-    for (unsigned int i = 0; i < size; ++i) {
-        ref->addCardToCopyDeck(this->deck.getCards()[i]->getShapeChar(), this->deck.getCards()[i]->getPrefix());
-    }
-    return ref;
-}
-
-
-
-*/
-/**
- * Copy Constructor:deep copy of aList
- */
-
-/*
 
 Game::Game(const Game& game):
-    players()
+        deck(game.deck)
 {
-    players = *game.copyPlayers();
-    deck = *game.copyDeck();
+    players = game.copyPlayers();
     isVerbalOn =  game.isVerbalOn;
     N = game.N;
 }
-
-*/
 
 
 Card* Game::getThehighestValue(){

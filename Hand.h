@@ -17,6 +17,7 @@ private:
 public:
     Hand();
     Hand(const Hand &hand_);
+    vector<Card *>  copyHand() const;
 
     bool addCard(Card &card);
     bool removeCard(Card &card);
@@ -33,7 +34,6 @@ public:
     Card* getLowestAmount();
     virtual ~Hand() = 0;
 //    Hand *clone();
-//    vector<Card *> copyHand() const;
 };
 
 #endif
