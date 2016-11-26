@@ -8,16 +8,10 @@
 
 using namespace std;
 
-//vector<Player *> players;
-//Deck deck;
-//bool isVerbalOn;
-//int N;
-
-
-
 Game::Game(char *configurationFile): players(), deck(), isVerbalOn(), N(){
-    dummyConfig1();
+    //dummyConfig1();
     //readConfigFile(configurationFile);
+    readConfigFile(configurationFile);
 }
 
 /*
@@ -38,6 +32,7 @@ vector<Player *> * Game::copyPlayers() const
             playersNew->push_back(playerToAdd);
     }
     return playersNew;
+Game::Game(const Game& game): players(), deck(), isVerbalOn(), N() {
 }
 
 Deck * Game::copyDeck() const {
@@ -127,7 +122,6 @@ void Game::readConfigFile(char *configurationFile) {
 
     ifstream source;
     source.open(configurationFile);
-    vector<string> lines;
     string line;
 
     if (source.is_open()) {
@@ -154,18 +148,17 @@ void Game::readConfigFile(char *configurationFile) {
 
         }
 
-        ignoreInsignificantLines(source, line);
-
         string currPlayerName;
         string currType;
-        istringstream iss1(line);
 
-        while ( getline( iss1, currPlayerName, ' ' ) ) {
-
-            getline( iss1, currType, ' ');
-            addPlayer(currPlayerName, atoi(currType.c_str()));
-
+        while (!source.eof())
+        {
             ignoreInsignificantLines(source, line);
+            iss.str(line);
+            iss.clear();
+            getline(iss, currPlayerName, ' ' );
+            getline( iss, currType, ' ');
+            addPlayer(currPlayerName, atoi(currType.c_str()));
         }
 
         source.close();
@@ -201,7 +194,7 @@ void Game::addCardToDeck(char shape, string prefix) {
 
 void Game::addPlayer(string name, int type) {
 
-    Player *playerToAdd;
+    Player *playerToAdd = nullptr;
     switch (type) {
         case 1 :
             playerToAdd = new PlayerType1(name);
@@ -232,7 +225,7 @@ void Game::init() {
             Card *currCard = deck.fetchCard();
             Player *currPlayer = players[i];
 
-            addCardAndDiscardIfNeeded(currPlayer, currCard);
+            addCardAndDiscardIfNeeded(*currPlayer, *currCard);
         }
     }
 }
@@ -246,31 +239,33 @@ void Game::play() {
         increaseNumberOfTurns();
 
         Player *askingPlayer = players[currPlayerIndex];
-        Player *askedPlayer = players[askingPlayer->getFromWho(players,currPlayerIndex)]; //meanwhile till we have getFromWho()
+        //Player *askedPlayer = players[askingPlayer->getFromWho(players,currPlayerIndex)]; //meanwhile till we have getFromWho()
         //Player askedPlayer = askingPlayer.getFromWho(vector(copyPlayers));
-        Card *cardToAsk = askingPlayer->getWhichCardPrefix(); //meanwhile till we have getCardToAsk()
+        //Card *cardToAsk = askingPlayer->getWhichCardPrefix(); //meanwhile till we have getCardToAsk()
         //Card *cardToAsk = askingPlayer.getCardToAsk(askedPlayer.getCards());
+        Player *askedPlayer = players[askingPlayer->getFromWho(players,currPlayerIndex)];
+        Card *cardToAsk = askingPlayer->getWhichCardPrefix();
 
         if (isVerbalOn)
-            printATurn(askingPlayer, askedPlayer, cardToAsk);
+            printATurn(*askingPlayer, *askedPlayer, *cardToAsk);
 
-        vector<Card *> cardsOfSamePref = askedPlayer->searchCardsWithSamePref(cardToAsk);
+        vector<Card *> cardsOfSamePref = askedPlayer->searchCardsWithSamePrefix(*cardToAsk);
 
         if (cardsOfSamePref.size() == 0 && deck.getNumberOfCards() > 0)
-            addCardAndDiscardIfNeeded(askingPlayer, deck.fetchCard());
+            addCardAndDiscardIfNeeded(*askingPlayer, *deck.fetchCard());
         else
         {
             for (Card *cardToMove : cardsOfSamePref)
             {
                 askedPlayer->removeCard(*cardToMove);
-                addCardAndDiscardIfNeeded(askingPlayer, cardToMove);
+                addCardAndDiscardIfNeeded(*askingPlayer, *cardToMove);
             }
 
             if (askedPlayer->getNumberOfCards() > 0)
             {
                 for (unsigned int i = 0; i < cardsOfSamePref.size() && deck.getNumberOfCards() > 0; ++i)
                 {
-                    addCardAndDiscardIfNeeded(askedPlayer, deck.fetchCard());
+                    addCardAndDiscardIfNeeded(*askedPlayer, *deck.fetchCard());
                 }
             }
         }
@@ -279,36 +274,25 @@ void Game::play() {
     }
 }
 
-void Game::printATurn(Player *askingPlayer, Player *askedPlayer, Card *cardToAsk) {
+void Game::printATurn(Player& askingPlayer, Player& askedPlayer, Card& cardToAsk) {
     cout << "Turn " << numberOfTurns << endl;
     printState();
-    cout << askingPlayer->getName() + " asked " + askedPlayer->getName()
-            + " for the value " + cardToAsk->getPrefix() << endl << endl;
+    cout << askingPlayer.getName() + " asked " + askedPlayer.getName()
+            + " for the value " + cardToAsk.getPrefix() << endl << endl;
 }
 
-void Game::addCardAndDiscardIfNeeded(Player *player, Card *card) {
-    player->addCard(*card);
-    if (player->getNumberOfSamePrefix(card) == 4)
-        player->discardSet(card);
+void Game::addCardAndDiscardIfNeeded(Player& player, Card& card) {
+    player.addCard(card);
+    if (player.getNumberOfSamePrefix(card) == 4)
+        player.discardSet(&card);
 }
-
-//This function prints the cards remaining in
-//the deck from top to bottom in a single line,
-//followed by the name and sorted hand of all players (a single line per player).
-//***This function should be implemented with extra care because yonatan said.***
-//
 void Game::printState() {
-//    cout << "the hiest value: " <<  getThehighestValue()->toString() << endl;
-//    cout << "gettheplayerwithmostcards: " << gettheplayerwithmostcards() << endl;
-//    cout << "getThemost " << getMost()->toString() << endl;
-//    cout << "getL " << getLoest()->toString() << endl;
     cout << "Deck: " << deck.toString() << endl;
-    for (unsigned int i = 0; i < players.size(); ++i) {
-        cout << players[i]->toString() << endl;
-    }
 
+    for (unsigned int i = 0; i < players.size(); ++i)
+        cout << players[i]->toString() << endl;
 }
-// or winners
+
 void Game::printWinner() {
     vector<Player*> winners = getWinners();
 

@@ -10,19 +10,19 @@ string Player::getName()const {
     return name;
 }
 
-int  Player::getThePlayerWithMostCards(vector<Player *> players , int iCurrPlaye){
-    int from;
+int  Player::getThePlayerWithMostCards(vector<Player *> players , int iCurrPlayer){
+    int from = 0;
 
     for (unsigned int i=0; i<players.size()-1; i++){
         for (unsigned int j=1; j<players.size();j++){
-            if(players[i]->getNumberOfCards() > players[j]->getNumberOfCards() && players[i] != players[iCurrPlaye] ){
+            if(players[i]->getNumberOfCards() > players[j]->getNumberOfCards() && players[i] != players[iCurrPlayer] ){
                 from = i;
             }
-            else if(players[i]->getNumberOfCards() < players[j]->getNumberOfCards() && players[i] != players[iCurrPlaye]){
+            else if(players[i]->getNumberOfCards() < players[j]->getNumberOfCards() && players[i] != players[iCurrPlayer]){
                 from = j;
             }
             else{
-                if(i > j && players[i] != players[iCurrPlaye]){
+                if(i > j && players[i] != players[iCurrPlayer]){
                     from = i;
                 }
                 else{
@@ -53,8 +53,8 @@ Player *PlayerType1::clone() {
     return new PlayerType1(*this);
 }
 
-int PlayerType1::getFromWho(vector<Player *> players, int iCurrPlaye){
-    return getThePlayerWithMostCards(players, iCurrPlaye);
+int PlayerType1::getFromWho(const vector<Player *> &players, int iCurrPlayer){
+    return getThePlayerWithMostCards(players, iCurrPlayer);
 }
 
 Card * PlayerType1::getWhichCardPrefix() {
@@ -72,8 +72,9 @@ Player *PlayerType2::clone() {
     return new PlayerType2(*this);
 }
 
-int PlayerType2::getFromWho(vector<Player *> players, int iCurrPlaye){
-    return getThePlayerWithMostCards(players,iCurrPlaye);
+int PlayerType2::getFromWho(const vector<Player *> &players, int iCurrPlayer){
+
+    return getThePlayerWithMostCards(players,iCurrPlayer);
 }
 
 Card * PlayerType2::getWhichCardPrefix() {
@@ -91,12 +92,12 @@ Player *PlayerType3::clone() {
     return new PlayerType3(*this);
 }
 
-int PlayerType3::getFromWho(vector<Player *> players, int iCurrPlaye){
+int PlayerType3::getFromWho(const vector<Player *> &players, int iCurrPlayer){
     if (from==0){
-        from = iCurrPlaye;
+        from = iCurrPlayer;
     }
     from = (int) ((from + 1) % players.size());
-    if (from==iCurrPlaye){
+    if (from==iCurrPlayer){
         from = (int) ((from + 1) % players.size());
     }
     return from;
@@ -117,12 +118,12 @@ Player *PlayerType4::clone() {
     return new PlayerType4(*this);
 }
 
-int PlayerType4::getFromWho(vector<Player *> players, int iCurrPlaye){
+int PlayerType4::getFromWho(const vector<Player *> &players, int iCurrPlayer){
     if (from==0){
-        from = iCurrPlaye;
+        from = iCurrPlayer;
     }
     from = (int) ((from + 1) % players.size());
-    if (from==iCurrPlaye){
+    if (from==iCurrPlayer){
         from = (int) ((from + 1) % players.size());
     }
     return from;

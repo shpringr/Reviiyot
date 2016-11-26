@@ -66,6 +66,7 @@ Player *PlayerType1::clone() {
 
 
 
+
 Card::~Card() {}
 
 Shape Card::getShape()const {
@@ -75,9 +76,9 @@ Shape Card::getShape()const {
 FigureCard::FigureCard(char figu, char shap):Card(shapeSymbolsToNames[shap]),figure(figureSymbolsToNames[figu]) {
 }
 
-bool FigureCard::isSamePrefix(Card *card)
+bool FigureCard::isSamePrefix(Card &card)
 {
-    if (FigureCard *fc = dynamic_cast<FigureCard *>(card))
+    if (FigureCard *fc = dynamic_cast<FigureCard *>(&card))
     {
         return (getPrefix() == fc->getPrefix());
     }
@@ -85,9 +86,9 @@ bool FigureCard::isSamePrefix(Card *card)
     return false;
 }
 
-int FigureCard::compare(Card *card) {
+int FigureCard::compare(Card &card) {
 
-    if(FigureCard *fc = dynamic_cast<FigureCard *>(card))
+    if(FigureCard *fc = dynamic_cast<FigureCard *>(&card))
     {
         if (this->figure > fc->figure)
             return 1;
@@ -128,9 +129,9 @@ Figure FigureCard::getFigure()const {
 NumericCard::NumericCard(int num, char shap) :Card(shapeSymbolsToNames[shap]),number(num) {
 }
 
-bool NumericCard::isSamePrefix(Card *card)
+bool NumericCard::isSamePrefix(Card &card)
 {
-    if (NumericCard *nc = dynamic_cast<NumericCard *>(card))
+    if (NumericCard *nc = dynamic_cast<NumericCard *>(&card))
     {
         return (this->getPrefix() == nc->getPrefix());
     }
@@ -138,9 +139,9 @@ bool NumericCard::isSamePrefix(Card *card)
     return false;
 }
 
-int NumericCard::compare(Card *card) {
+int NumericCard::compare(Card &card) {
 
-    if (NumericCard* nc = dynamic_cast<NumericCard *>(card))
+    if (NumericCard* nc = dynamic_cast<NumericCard *>(&card))
     {
         if (this->number > nc->number)
             return 1;

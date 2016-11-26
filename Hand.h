@@ -20,18 +20,18 @@ public:
 
     bool addCard(Card &card);
     bool removeCard(Card &card);
-    int getNumberOfSamePrefix(Card *card);
     Card* getHighestAmount();
     vector<Card *> getHand() const;
     vector<Card *> getHand();
+    int getNumberOfSamePrefix(Card &card);
+    Card* getHighestAmount();
     int getNumberOfCards();
     Card * getTheHighestValue();
     Card * getTheLowestValue();
     string toString();
-    vector<Card *> searchCardsWithSamePref(Card *card);
-    void discardSet(Card *currCard);
-    Card *getFirstCard();
-    Card *getLowestAmount();
+    vector<Card *> searchCardsWithSamePrefix(Card& card);
+    void discardSet(Card* currCard);
+    Card* getLowestAmount();
     virtual ~Hand() = 0;
 //    Hand *clone();
 //    vector<Card *> copyHand() const;

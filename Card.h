@@ -33,9 +33,9 @@ public:
     char getShapeChar();
     virtual string toString() = 0;
     virtual ~Card();
-    virtual int compare(Card *card) = 0;
-    virtual bool isSamePrefix(Card *card) = 0;
+    virtual int compare(Card &card) = 0;
     virtual string getPrefix() = 0;
+    virtual bool isSamePrefix(Card &card) = 0;
 };
 
 class FigureCard : public Card {
@@ -46,10 +46,10 @@ public:
     virtual Card * clone() override;
     FigureCard(char figu, char shap);
     virtual string toString() override;
-    virtual int compare(Card *card) override;
-    virtual bool isSamePrefix(Card *card) override;
+    virtual int compare(Card &card) override;
     virtual string getPrefix() override;
     Figure getFigure()const;
+    virtual bool isSamePrefix(Card &card) override;
 };
 
 class NumericCard : public Card {
@@ -60,9 +60,9 @@ public:
     virtual Card * clone() override;
     NumericCard(int num, char shap);
     virtual string toString() override;
-    virtual int compare(Card *card) override;
-    virtual bool isSamePrefix(Card *card) override;
+    virtual int compare(Card &card) override;
     virtual string getPrefix() override;
+    virtual bool isSamePrefix(Card &card) override;
     int getNumber()const;
 };
 
