@@ -86,9 +86,6 @@ Player *PlayerType3::clone() {
 }
 
 int PlayerType3::getFromWho(const vector<Player *> &players, int iCurrPlayer){
-    if (from==-1){
-        from = iCurrPlayer;
-    }
     from = (int) ((from + 1) % players.size());
     if (from==iCurrPlayer){
         from = (int) ((from + 1) % players.size());
@@ -112,9 +109,6 @@ Player *PlayerType4::clone() {
 }
 
 int PlayerType4::getFromWho(const vector<Player *> &players, int iCurrPlayer){
-    if (from==-1){
-        from = iCurrPlayer;
-    }
     from = (int) ((from + 1) % players.size());
     if (from==iCurrPlayer){
         from = (int) ((from + 1) % players.size());
