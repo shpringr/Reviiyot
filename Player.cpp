@@ -4,7 +4,8 @@ using namespace std;
 
 Player::Player(string nam) : name(nam) {}
 
-Player::Player(const Player& player): name(player.getName()) {}
+Player::Player(const Player& player): name(player.getName()) ,Hand(player) {
+}
 
 string Player::getName()const {
     return name;

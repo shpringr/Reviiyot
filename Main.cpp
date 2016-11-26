@@ -21,7 +21,7 @@ int main(int argc, char **argv) {
     game.printNumberOfTurns();
     cout << "----------" << endl;
     cout << "Initial State:" << endl;
-  //  initializedGame.printState();
+   initializedGame.printState();
     cout << "----------" << endl;
     cout << "Final State:" << endl;
     game.printState();

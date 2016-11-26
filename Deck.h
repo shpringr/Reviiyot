@@ -16,6 +16,8 @@ private:
 
 public:
     Deck();
+    Deck(const Deck &deck);
+    vector<Card *> copyDeck() const;
 
     vector<Card *>& getCards();
     Card *fetchCard();

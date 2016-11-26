@@ -12,13 +12,10 @@ class Player : public Hand {
 private:
     const string name;
 
-protected:
+public:
     Player(string nam);
     Player(const Player& player);
-
-
-public:
-	string getName()const;
+    string getName()const;
     virtual Player * clone()=0;
 	//virtual int getFromWho(vector<Player *> players, int iCurrPlayer)=0;
 	//string getName();
