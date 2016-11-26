@@ -29,9 +29,9 @@ public:
     Shape getShape();
     virtual string toString() = 0;
     virtual ~Card();
-    virtual int compare(Card *card) = 0;
-    virtual bool isSamePrefix(Card *card) = 0;
+    virtual int compare(Card &card) = 0;
     virtual string getPrefix() = 0;
+    virtual bool isSamePrefix(Card &card) = 0;
 };
 
 class FigureCard : public Card {
@@ -40,9 +40,9 @@ private:
 public:
     FigureCard(char figu, char shap);
     virtual string toString() override;
-    virtual int compare(Card *card) override;
-    virtual bool isSamePrefix(Card *card) override;
+    virtual int compare(Card &card) override;
     virtual string getPrefix() override;
+    virtual bool isSamePrefix(Card &card) override;
 };
 
 class NumericCard : public Card {
@@ -51,9 +51,9 @@ private:
 public:
     NumericCard(int num, char shap);
     virtual string toString() override;
-    virtual int compare(Card *card) override;
-    virtual bool isSamePrefix(Card *card) override;
+    virtual int compare(Card &card) override;
     virtual string getPrefix() override;
+    virtual bool isSamePrefix(Card &card) override;
 };
 
 #endif

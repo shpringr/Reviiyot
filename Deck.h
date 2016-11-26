@@ -16,7 +16,7 @@ private:
 
 public:
     Deck();
-    vector<Card *> &getCards();
+    vector<Card *>& getCards();
     Card *fetchCard();
     int getNumberOfCards();
     string toString();

@@ -3,7 +3,8 @@
 using namespace std;
 
 Deck::Deck():cards(){}
- vector<Card *>& Deck::getCards()
+
+vector<Card *>& Deck::getCards()
 {
 	return cards;
 }

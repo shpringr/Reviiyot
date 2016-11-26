@@ -14,7 +14,6 @@ int main(int argc, char **argv) {
     Game game = Game(configurationFile);
     game.init();
     Game initializedGame = game;
-    //cout << "the hiest value: " <<  game.getThehighestValue()->toString() << endl;
     game.play();
 
     cout << std::endl;
@@ -45,16 +44,16 @@ void tryCompareCards() {
     NumericCard *C6 = new NumericCard(3, 'D');
     NumericCard *C7 = new NumericCard(2, 'D');
 
-    int a1 = C->compare(C1); // 1
-    int a2 = C1->compare(C); //-1
+    int a1 = C->compare(*C1); // 1
+    int a2 = C1->compare(*C); //-1
 
-    int a3 = C->compare(C2); // 0
-    int a4 = C2->compare(C3); //-1
-    int a5 = C3->compare(C4); // 1
+    int a3 = C->compare(*C2); // 0
+    int a4 = C2->compare(*C3); //-1
+    int a5 = C3->compare(*C4); // 1
 
-    int a6 = C1->compare(C5); //0
-    int a7 = C5->compare(C6); //-1
-    int a8 = C6->compare(C7); //1
+    int a6 = C1->compare(*C5); //0
+    int a7 = C5->compare(*C6); //-1
+    int a8 = C6->compare(*C7); //1
 
     cout << "actul : " << a1 << a2 << a3 << a4 << a5 << a6 << a7 << a8 << endl;
     cout << "1-10-110-11" << endl;

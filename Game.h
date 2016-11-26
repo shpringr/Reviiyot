@@ -14,17 +14,17 @@ private:
     Deck deck;
     bool isVerbalOn;
     int N;
-
-    void readConfigFile(char *configurationFile);
     int numberOfTurns = 0;
 
-    void addCardAndDiscardIfNeeded(Player *player, Card *card);
+    void readConfigFile(char *configurationFile);
+    void addCardAndDiscardIfNeeded(Player& player, Card& card);
     void increaseNumberOfTurns();
     bool isThereAWinner();
-    void printATurn(Player *pPlayer, Player *pPlayer1, Card *pCard);
+    void printATurn(Player& pPlayer, Player& pPlayer1, Card& pCard);
     void ignoreInsignificantLines(ifstream &source, string &line);
     void addCardToDeck(char shape, string prefix);
     void addPlayer(string name, int type);
+    vector<Player *> getWinners();
 
 public:
     Game(char *configurationFile);
@@ -34,12 +34,6 @@ public:
     void printState();
     void printWinner();
     void printNumberOfTurns();
-    vector<Player *> getWinners();
-    Card* getThehighestValue();
-    int gettheplayerwithmostcards();
-    Card * getMost();
-
-    Card *getLoest();
 };
 
 #endif
