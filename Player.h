@@ -24,7 +24,7 @@ public:
 	//string getName();
 	virtual int getFromWho(const vector<Player *> &players, int iCurrPlayer)=0;
 	virtual Card * getWhichCardPrefix()=0;
-    int getThePlayerWithMostCards(vector<Player *> players,int iCurrPlayer);
+    int getThePlayerWithMostCards(const vector<Player *> &players,int iCurrPlayer);
 	virtual ~Player();
 	string toString();
 };
