@@ -36,9 +36,39 @@ map<Figure, char> figureNamesToSymbols = {
 };
 
 Card::Card(Shape shap):shape(shap) {}
+
+Card::Card(const Card& card):shape(card.getShape())  {}
+
+FigureCard::FigureCard(const FigureCard &figure_card) : Card(figure_card) , figure(figure_card.getFigure()) {}
+
+NumericCard::NumericCard(const NumericCard &numeric_card): Card(numeric_card), number(numeric_card.getNumber()) {}
+
+
+Card *NumericCard::clone() {
+    return new NumericCard(*this);
+}
+
+Card *FigureCard::clone() {
+    return new FigureCard(*this);
+}
+
+
+/*
+
+Player::Player(const Player& player): name(player.getName()) {}
+
+PlayerType1::PlayerType1(const PlayerType1 &player) : Player(player) {}
+
+Player *PlayerType1::clone() {
+    return new PlayerType1(*this);
+}
+*/
+
+
+
 Card::~Card() {}
 
-Shape Card::getShape() {
+Shape Card::getShape()const {
     return shape;
 }
 
@@ -80,9 +110,18 @@ string FigureCard::getPrefix()
     return ss.str();
 }
 
+char Card::getShapeChar(){
+    return shapeNamesToSymbols[shape];
+}
+
+
 string FigureCard::toString() {
     return getPrefix() + shapeNamesToSymbols[getShape()];
 
+}
+
+Figure FigureCard::getFigure()const {
+    return this->figure;
 }
 
 
@@ -127,3 +166,10 @@ string NumericCard::getPrefix()
 string NumericCard::toString() {
     return getPrefix() + shapeNamesToSymbols[getShape()];
 }
+
+int NumericCard::getNumber()const {
+    return this->number;
+}
+
+
+

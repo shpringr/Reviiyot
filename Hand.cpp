@@ -5,11 +5,36 @@
 using namespace std;
 
 Hand::Hand():hand(){}
+
+Hand::Hand(const Hand& hand_): hand(){
+    //hand = hand_.copyHand();
+}
+/*
+vector<Card *> Hand::copyHand() const {
+    vector<Card *> newHand;
+    for (unsigned int i = 0; i < hand.size(); ++i) {
+        newHand->push_back(hand[i]);
+    }
+    return newHand;
+}*/
+
+//Hand *Hand::clone() {
+//    return new Hand(*this);
+//}
+
+
+
 bool Hand::addCard(Card &card)
 {
     hand.push_back(&card);
     return true;
 }
+
+vector<Card *> Hand::getHand() const{
+    return hand;
+}
+
+
 
 vector<Card *> Hand::getHand(){
     return hand;

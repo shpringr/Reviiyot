@@ -17,9 +17,12 @@ private:
 public:
     Deck();
     vector<Card *> &getCards();
+
     Card *fetchCard();
     int getNumberOfCards();
     string toString();
+
+    void addCardToCopyDeck(char shape, string prefix);
 };
 
 #endif

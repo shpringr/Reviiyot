@@ -19,6 +19,20 @@ int Deck::getNumberOfCards(){
 	return (int)cards.size();
 }
 
+
+void Deck::addCardToCopyDeck(char shape, string prefix) {
+
+    bool isDigit = isdigit(prefix[0]);
+
+    if (isDigit) {
+        int numericPrefix = atoi(prefix.c_str());
+        cards.push_back(new NumericCard(numericPrefix, shape));
+    }
+    else
+        cards.push_back(new FigureCard(prefix[0], shape));
+}
+
+
 string Deck::toString()
 {
 	string s;

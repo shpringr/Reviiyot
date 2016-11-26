@@ -11,15 +11,18 @@ using namespace std;
 
 class Hand {
 private:
+
     vector<Card *> hand;
-protected:
-    Hand();
 
 public:
+    Hand();
+    Hand(const Hand &hand_);
+
     bool addCard(Card &card);
     bool removeCard(Card &card);
     int getNumberOfSamePrefix(Card *card);
-   Card* getHighestAmount();
+    Card* getHighestAmount();
+    vector<Card *> getHand() const;
     vector<Card *> getHand();
     int getNumberOfCards();
     Card * getTheHighestValue();
@@ -30,8 +33,8 @@ public:
     Card *getFirstCard();
     Card *getLowestAmount();
     virtual ~Hand() = 0;
-
-
+//    Hand *clone();
+//    vector<Card *> copyHand() const;
 };
 
 #endif
