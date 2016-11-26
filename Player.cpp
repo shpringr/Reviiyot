@@ -11,26 +11,19 @@ string Player::getName()const {
     return name;
 }
 
-int  Player::getThePlayerWithMostCards(vector<Player *> players , int iCurrPlayer){
-    int from = 0;
+int  Player::getThePlayerWithMostCards(const vector<Player *> &players , int iCurrPlayer){
 
-    for (unsigned int i=0; i<players.size()-1; i++){
-        for (unsigned int j=1; j<players.size();j++){
-            if(players[i]->getNumberOfCards() > players[j]->getNumberOfCards() && players[i] != players[iCurrPlayer] ){
-                from = i;
-            }
-            else if(players[i]->getNumberOfCards() < players[j]->getNumberOfCards() && players[i] != players[iCurrPlayer]){
-                from = j;
-            }
-            else{
-                if(i > j && players[i] != players[iCurrPlayer]){
-                    from = i;
-                }
-                else{
-                    from = j;
-                }
-            }
-        }
+    int from = 0;
+    int maxNumOfCards = 0;
+
+    for (unsigned int i = 0; i < players.size() ; ++i) {
+        if (players[i]->getNumberOfCards() > maxNumOfCards && i != iCurrPlayer)
+            maxNumOfCards = players[i]->getNumberOfCards();
+    }
+
+    for (unsigned int j = 0; j < players.size() ; ++j ) {
+        if (players[j]->getNumberOfCards() == maxNumOfCards && j != iCurrPlayer)
+            from = j;
     }
 
     return from;
@@ -85,7 +78,7 @@ Card * PlayerType2::getWhichCardPrefix() {
 PlayerType2::~PlayerType2() {}
 
 
-PlayerType3::PlayerType3(string nam): Player(nam), from(0), numberOfPlayers(0){}
+PlayerType3::PlayerType3(string nam): Player(nam), from(-1), numberOfPlayers(0){}
 
 PlayerType3::PlayerType3(const PlayerType3 &player) : Player(player) {}
 
@@ -94,7 +87,7 @@ Player *PlayerType3::clone() {
 }
 
 int PlayerType3::getFromWho(const vector<Player *> &players, int iCurrPlayer){
-    if (from==0){
+    if (from==-1){
         from = iCurrPlayer;
     }
     from = (int) ((from + 1) % players.size());
@@ -111,7 +104,7 @@ PlayerType3::~PlayerType3() {}
 
 
 
-PlayerType4::PlayerType4(string nam) : Player(nam), from(0), numberOfPlayers(0) {}
+PlayerType4::PlayerType4(string nam) : Player(nam), from(-1), numberOfPlayers(0) {}
 
 PlayerType4::PlayerType4(const PlayerType4 &player) : Player(player) {}
 
@@ -120,7 +113,7 @@ Player *PlayerType4::clone() {
 }
 
 int PlayerType4::getFromWho(const vector<Player *> &players, int iCurrPlayer){
-    if (from==0){
+    if (from==-1){
         from = iCurrPlayer;
     }
     from = (int) ((from + 1) % players.size());

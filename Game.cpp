@@ -121,7 +121,7 @@ void Game::readConfigFile(char *configurationFile) {
         string currCard;
         istringstream iss(line);
 
-        while ( getline( iss, currCard, ' ' ) ) {
+        while (getline(iss, currCard, ' ')) {
 
             char shape = currCard.back();
             string prefix;
@@ -136,16 +136,18 @@ void Game::readConfigFile(char *configurationFile) {
         while (!source.eof())
         {
             ignoreInsignificantLines(source, line);
-            iss.str(line);
-            iss.clear();
-            getline(iss, currPlayerName, ' ' );
-            getline( iss, currType, ' ');
-            addPlayer(currPlayerName, atoi(currType.c_str()));
+
+            if (!isLineInsignificant(line))
+            {
+                iss.str(line);
+                iss.clear();
+                getline(iss, currPlayerName, ' ');
+                getline(iss, currType, ' ');
+                addPlayer(currPlayerName, atoi(currType.c_str()));
+            }
         }
 
         source.close();
-        deck.toString();
-
     } else{
         cout << "couldn't open file!" << endl;
     }
@@ -155,9 +157,14 @@ void Game::ignoreInsignificantLines(ifstream &source, string &line)
 {
     getline(source, line);
 
-    while (line.empty() || line.front() ==  '#') {
+    while (isLineInsignificant(line) && !source.eof()) {
         getline(source, line);
     }
+}
+
+bool Game::isLineInsignificant(string &line)
+{
+    return line.empty() || line.front() ==  '#';
 }
 
 

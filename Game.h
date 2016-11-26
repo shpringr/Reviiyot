@@ -25,6 +25,7 @@ private:
     void addCardToDeck(char shape, string prefix);
     void addPlayer(string name, int type);
     vector<Player *> getWinners();
+    bool isLineInsignificant(string &line);
 
 public:
     Game(char *configurationFile);
