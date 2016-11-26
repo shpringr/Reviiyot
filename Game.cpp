@@ -239,10 +239,6 @@ void Game::play() {
         increaseNumberOfTurns();
 
         Player *askingPlayer = players[currPlayerIndex];
-        //Player *askedPlayer = players[askingPlayer->getFromWho(players,currPlayerIndex)]; //meanwhile till we have getFromWho()
-        //Player askedPlayer = askingPlayer.getFromWho(vector(copyPlayers));
-        //Card *cardToAsk = askingPlayer->getWhichCardPrefix(); //meanwhile till we have getCardToAsk()
-        //Card *cardToAsk = askingPlayer.getCardToAsk(askedPlayer.getCards());
         Player *askedPlayer = players[askingPlayer->getFromWho(players,currPlayerIndex)];
         Card *cardToAsk = askingPlayer->getWhichCardPrefix();
 

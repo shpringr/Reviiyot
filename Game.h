@@ -34,7 +34,6 @@ public:
     void printState();
     void printWinner();
     void printNumberOfTurns();
-    vector<Player *> getWinners();
     Card* getThehighestValue();
     int gettheplayerwithmostcards();
     Card * getMost();

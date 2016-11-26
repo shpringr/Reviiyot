@@ -24,7 +24,6 @@ public:
     vector<Card *> getHand() const;
     vector<Card *> getHand();
     int getNumberOfSamePrefix(Card &card);
-    Card* getHighestAmount();
     int getNumberOfCards();
     Card * getTheHighestValue();
     Card * getTheLowestValue();
