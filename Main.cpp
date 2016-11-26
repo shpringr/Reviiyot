@@ -27,7 +27,7 @@ int main(int argc, char **argv) {
     cout << "Final State:" << endl;
     game.printState();
 
-    tryCompareCards();
+//    tryCompareCards();
 
     return 0;
 }

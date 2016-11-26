@@ -72,18 +72,20 @@ void Game::readConfigFile(char *configurationFile) {
             addCardToDeck(shape, prefix);
         }
 
-        ignoreInsignificantLines(source, line);
-
         string currPlayerName;
         string currType;
-        istringstream iss1(line);
 
-        while ( getline( iss1, currPlayerName, ' ' ) ) {
-
-            getline( iss1, currType, ' ');
+        while (!source.eof())
+        {
+            ignoreInsignificantLines(source, line);
+            iss.str(line);
+            iss.clear();
+            getline(iss, currPlayerName, ' ' );
+            getline( iss, currType, ' ');
             addPlayer(currPlayerName, atoi(currType.c_str()));
 
-            ignoreInsignificantLines(source, line);
+
+
         }
 
         source.close();
