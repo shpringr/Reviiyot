@@ -22,8 +22,6 @@ public:
     bool addCard(Card &card);
     bool removeCard(Card &card);
     Card* getHighestAmount();
-    vector<Card *> getHand() const;
-    vector<Card *> getHand();
     int getNumberOfSamePrefix(Card &card);
     int getNumberOfCards();
     Card * getTheHighestValue();
@@ -33,7 +31,6 @@ public:
     void discardSet(Card* currCard);
     Card* getLowestAmount();
     virtual ~Hand() = 0;
-//    Hand *clone();
 };
 
 #endif

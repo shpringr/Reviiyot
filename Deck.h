@@ -23,8 +23,6 @@ public:
     Card *fetchCard();
     int getNumberOfCards();
     string toString();
-
-    void addCardToCopyDeck(char shape, string prefix);
 };
 
 #endif

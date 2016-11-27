@@ -9,22 +9,8 @@
 using namespace std;
 
 Game::Game(char *configurationFile): players(), deck(), isVerbalOn(), N(){
-    //dummyConfig1();
-    //readConfigFile(configurationFile);
     readConfigFile(configurationFile);
 }
-
-
-/*
-vector<Card *> Deck::copyDeck() const {
-    vector<Card *> newDeck;
-    for (unsigned int i = 0; i < cards.size(); ++i) {
-        newDeck.push_back(cards[i]);
-    }
-    return newDeck;
-}
-*/
-
 
 vector<Player *> Game::copyPlayers() const {
 
@@ -36,68 +22,9 @@ vector<Player *> Game::copyPlayers() const {
     return playersNew;
 }
 
-//Game::Game(const Game& game): players(), deck(), isVerbalOn(), N() {}
-
-
 Game::Game(const Game& game):
-        deck(game.deck)
+        players(game.copyPlayers()), deck(game.deck), isVerbalOn(game.isVerbalOn), N(game.N)
 {
-    players = game.copyPlayers();
-    isVerbalOn =  game.isVerbalOn;
-    N = game.N;
-}
-
-
-Card* Game::getThehighestValue(){
-    return players[0]->getTheHighestValue();
-}
-
-int Game::gettheplayerwithmostcards(){
-    return players[0]->getThePlayerWithMostCards(players,0);
-}
-
-Card * Game::getMost(){
-    return players[1]->getHighestAmount();
-}
-
-Card * Game::getLoest(){
-    return players[1]->getLowestAmount();
-}
-
-void Game::dummyConfig1()
-{
-    isVerbalOn = true;
-    N = 3;
-
-    deck.getCards().push_back(new FigureCard('K', 'C'));
-    deck.getCards().push_back(new FigureCard('Q', 'H'));
-    deck.getCards().push_back(new NumericCard(3, 'D'));
-    deck.getCards().push_back(new FigureCard('A', 'H'));
-    deck.getCards().push_back(new FigureCard('J', 'H'));
-    deck.getCards().push_back(new NumericCard(2, 'C'));
-    deck.getCards().push_back(new NumericCard(3, 'S'));
-    deck.getCards().push_back(new FigureCard('K', 'S'));
-    deck.getCards().push_back(new FigureCard('A', 'S'));
-    deck.getCards().push_back(new FigureCard('J', 'S'));
-    deck.getCards().push_back(new NumericCard(3, 'C'));
-    deck.getCards().push_back(new FigureCard('K', 'H'));
-    deck.getCards().push_back(new FigureCard('A', 'D'));
-    deck.getCards().push_back(new FigureCard('Q', 'C'));
-    deck.getCards().push_back(new FigureCard('J', 'D'));
-    deck.getCards().push_back(new FigureCard('Q', 'S'));
-    deck.getCards().push_back(new NumericCard(3, 'H'));
-    deck.getCards().push_back(new FigureCard('K', 'D'));
-    deck.getCards().push_back(new FigureCard('A', 'C'));
-    deck.getCards().push_back(new FigureCard('J', 'C'));
-    deck.getCards().push_back(new NumericCard(2, 'D'));
-    deck.getCards().push_back(new NumericCard(2, 'H'));
-    deck.getCards().push_back(new NumericCard(2, 'S'));
-    deck.getCards().push_back(new FigureCard('Q', 'D'));
-
-    players.push_back(new PlayerType1("Alice"));
-    players.push_back(new PlayerType2("Bob"));
-    players.push_back(new PlayerType3("Charlie"));
-    // players.push_back(new PlayerType3("Hey",4));
 }
 
 void Game::readConfigFile(char *configurationFile) {
@@ -271,6 +198,7 @@ void Game::addCardAndDiscardIfNeeded(Player& player, Card& card) {
     if (player.getNumberOfSamePrefix(card) == 4)
         player.discardSet(&card);
 }
+
 void Game::printState() {
     cout << "Deck: " << deck.toString() << endl;
 

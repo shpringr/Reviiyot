@@ -35,17 +35,7 @@ public:
     void printState();
     void printWinner();
     void printNumberOfTurns();
-    Card* getThehighestValue();
-    int gettheplayerwithmostcards();
-    Card * getMost();
-
-    Card *getLoest();
-
    vector<Player *>  copyPlayers() const;
-
-
-    void dummyConfig1();
-
 };
 
 #endif

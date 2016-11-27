@@ -30,7 +30,6 @@ public:
     Card(const Card &card);
     virtual Card * clone()=0;
     Shape getShape()const;
-    char getShapeChar();
     virtual string toString() = 0;
     virtual ~Card();
     virtual int compare(Card &card) = 0;

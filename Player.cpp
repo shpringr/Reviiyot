@@ -4,7 +4,7 @@ using namespace std;
 
 Player::Player(string nam) : name(nam) {}
 
-Player::Player(const Player& player): name(player.getName()) ,Hand(player) {
+Player::Player(const Player& player):Hand(player),  name(player.getName())  {
 }
 
 string Player::getName()const {
@@ -30,6 +30,13 @@ int  Player::getThePlayerWithMostCards(const vector<Player *> &players , int iCu
 
 }
 
+int Player::getNextPlayer(const vector<Player *> &players, int iCurrPlayer, int& from) {
+    from = (int) ((from + 1) % players.size());
+    if (from == iCurrPlayer){
+        from = (int) ((from + 1) % players.size());
+    }
+    return from;
+}
 
 string Player::toString() {
     return name + ": " + Hand::toString();
@@ -78,20 +85,16 @@ Card * PlayerType2::getWhichCardPrefix() {
 PlayerType2::~PlayerType2() {}
 
 
-PlayerType3::PlayerType3(string nam): Player(nam), from(-1), numberOfPlayers(0){}
+PlayerType3::PlayerType3(string nam): Player(nam), from(-1){}
 
-PlayerType3::PlayerType3(const PlayerType3 &player) : Player(player) {}
+PlayerType3::PlayerType3(const PlayerType3 &player) : Player(player), from(player.from){}
 
 Player *PlayerType3::clone() {
     return new PlayerType3(*this);
 }
 
 int PlayerType3::getFromWho(const vector<Player *> &players, int iCurrPlayer){
-    from = (int) ((from + 1) % players.size());
-    if (from==iCurrPlayer){
-        from = (int) ((from + 1) % players.size());
-    }
-    return from;
+    return getNextPlayer(players, iCurrPlayer, from);
 }
 
 Card * PlayerType3::getWhichCardPrefix()  {
@@ -101,20 +104,16 @@ PlayerType3::~PlayerType3() {}
 
 
 
-PlayerType4::PlayerType4(string nam) : Player(nam), from(-1), numberOfPlayers(0) {}
+PlayerType4::PlayerType4(string nam) : Player(nam), from(-1){}
 
-PlayerType4::PlayerType4(const PlayerType4 &player) : Player(player) {}
+PlayerType4::PlayerType4(const PlayerType4 &player) : Player(player), from(player.from) {}
 
 Player *PlayerType4::clone() {
     return new PlayerType4(*this);
 }
 
 int PlayerType4::getFromWho(const vector<Player *> &players, int iCurrPlayer){
-    from = (int) ((from + 1) % players.size());
-    if (from==iCurrPlayer){
-        from = (int) ((from + 1) % players.size());
-    }
-    return from;
+    return getNextPlayer(players,iCurrPlayer, from);
 }
 
 Card * PlayerType4::getWhichCardPrefix() {

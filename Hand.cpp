@@ -25,16 +25,6 @@ bool Hand::addCard(Card &card)
     return true;
 }
 
-vector<Card *> Hand::getHand() const{
-    return hand;
-}
-
-
-
-vector<Card *> Hand::getHand(){
-    return hand;
-}
-
 bool Hand::removeCard(Card &card) {
 
     vector<Card *>::iterator it;
@@ -50,7 +40,7 @@ bool Hand::removeCard(Card &card) {
 }
 
 int Hand::getNumberOfCards() {
-    return (int) hand.size();
+    return hand.size();
 }
 
 int Hand::getNumberOfSamePrefix(Card& card)
@@ -181,11 +171,3 @@ Card * Hand::getTheLowestValue()
 }
 
 Hand::~Hand(){}
-/*
-//TO DELETE
-Card *Hand::getFirstCard() {
-    for (Card *c : hand) {
-        return c;
-    }
-    return nullptr;
-}*/

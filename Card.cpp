@@ -52,21 +52,6 @@ Card *FigureCard::clone() {
     return new FigureCard(*this);
 }
 
-
-/*
-
-Player::Player(const Player& player): name(player.getName()) {}
-
-PlayerType1::PlayerType1(const PlayerType1 &player) : Player(player) {}
-
-Player *PlayerType1::clone() {
-    return new PlayerType1(*this);
-}
-*/
-
-
-
-
 Card::~Card() {}
 
 Shape Card::getShape()const {
@@ -110,11 +95,6 @@ string FigureCard::getPrefix()
     ss << figureNamesToSymbols[figure];
     return ss.str();
 }
-
-char Card::getShapeChar(){
-    return shapeNamesToSymbols[shape];
-}
-
 
 string FigureCard::toString() {
     return getPrefix() + shapeNamesToSymbols[getShape()];
