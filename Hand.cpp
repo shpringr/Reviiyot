@@ -40,7 +40,7 @@ bool Hand::removeCard(Card &card) {
 }
 
 int Hand::getNumberOfCards() {
-    return hand.size();
+    return (int)hand.size();
 }
 
 int Hand::getNumberOfSamePrefix(Card& card)
@@ -170,4 +170,12 @@ Card * Hand::getTheLowestValue()
     return hand.front();
 }
 
-Hand::~Hand(){}
+Hand::~Hand(){
+    clearHand();
+}
+
+void Hand::clearHand() {
+for (unsigned int i = 0; i < hand.size(); ++i) {
+        delete (hand[i]);
+    }
+}

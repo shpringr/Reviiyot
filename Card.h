@@ -49,6 +49,8 @@ public:
     virtual string getPrefix() override;
     Figure getFigure()const;
     virtual bool isSamePrefix(Card &card) override;
+    virtual ~FigureCard();
+
 };
 
 class NumericCard : public Card {
@@ -63,6 +65,8 @@ public:
     virtual string getPrefix() override;
     virtual bool isSamePrefix(Card &card) override;
     int getNumber()const;
+    virtual ~NumericCard();
+
 };
 
 #endif

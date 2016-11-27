@@ -18,7 +18,8 @@ public:
     Deck();
     Deck(const Deck &deck);
     vector<Card *> copyDeck() const;
-
+    void clearDeck();
+    ~Deck();
     vector<Card *>& getCards();
     Card *fetchCard();
     int getNumberOfCards();

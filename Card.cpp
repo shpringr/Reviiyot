@@ -105,6 +105,8 @@ Figure FigureCard::getFigure()const {
     return this->figure;
 }
 
+FigureCard::~FigureCard() {}
+
 
 NumericCard::NumericCard(int num, char shap) :Card(shapeSymbolsToNames[shap]),number(num) {
 }
@@ -151,6 +153,8 @@ string NumericCard::toString() {
 int NumericCard::getNumber()const {
     return this->number;
 }
+
+NumericCard::~NumericCard() {}
 
 
 

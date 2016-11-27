@@ -17,12 +17,12 @@ int  Player::getThePlayerWithMostCards(const vector<Player *> &players , int iCu
     int maxNumOfCards = 0;
 
     for (unsigned int i = 0; i < players.size() ; ++i) {
-        if (players[i]->getNumberOfCards() > maxNumOfCards && i != iCurrPlayer)
+        if (players[i]->getNumberOfCards() > maxNumOfCards && (int)i != iCurrPlayer)
             maxNumOfCards = players[i]->getNumberOfCards();
     }
 
     for (unsigned int j = 0; j < players.size() ; ++j ) {
-        if (players[j]->getNumberOfCards() == maxNumOfCards && j != iCurrPlayer)
+        if (players[j]->getNumberOfCards() == maxNumOfCards && (int)j != iCurrPlayer)
             from = j;
     }
 

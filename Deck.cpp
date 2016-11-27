@@ -46,3 +46,14 @@ string Deck::toString()
 
 	return s;
 }
+
+void Deck::clearDeck() {
+	for (unsigned int i = 0; i < cards.size(); ++i) {
+		delete (cards[i]);
+	}
+
+}
+
+Deck::~Deck() {
+	clearDeck();
+}
