@@ -31,9 +31,7 @@ bool Hand::removeCard(Card &card) {
 
     for (it = hand.begin(); it != hand.end(); ++it){
         if ((*it)->compare(card) == 0){
-            Card* temp = *it;
             hand.erase(it);
-            delete (temp);
             return true;
         }
     }
