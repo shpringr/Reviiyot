@@ -26,6 +26,7 @@ private:
     void addPlayer(string name, int type);
     vector<Player *> getWinners();
     bool isLineInsignificant(string &line);
+    void clearPlayers();
 
 public:
     Game(char *configurationFile);
@@ -36,6 +37,8 @@ public:
     void printWinner();
     void printNumberOfTurns();
    vector<Player *>  copyPlayers() const;
+    ~Game();
+
 };
 
 #endif

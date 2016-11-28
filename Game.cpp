@@ -30,7 +30,9 @@ Game::Game(const Game& game):
 void Game::readConfigFile(char *configurationFile) {
 
     ifstream source;
-    source.open(configurationFile);
+    string path = "./" + string(configurationFile);
+
+    source.open(path);
     string line;
 
     if (source.is_open()) {
@@ -182,7 +184,7 @@ void Game::play() {
             }
         }
 
-        currPlayerIndex = (currPlayerIndex + 1) % players.size();
+        currPlayerIndex = (currPlayerIndex + 1) % (int) players.size();
     }
 }
 
@@ -244,4 +246,14 @@ vector<Player*> Game::getWinners()
         }
 
         return winners;
+}
+
+void Game::clearPlayers() {
+    for (unsigned int i = 0; i < players.size(); ++i) {
+        delete (players[i]);
+    }
+}
+
+Game::~Game() {
+    clearPlayers();
 }

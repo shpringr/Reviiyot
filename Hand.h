@@ -13,12 +13,12 @@ class Hand {
 private:
 
     vector<Card *> hand;
-
+protected:
+    void clearHand();
 public:
     Hand();
     Hand(const Hand &hand_);
     vector<Card *>  copyHand() const;
-
     bool addCard(Card &card);
     bool removeCard(Card &card);
     Card* getHighestAmount();
