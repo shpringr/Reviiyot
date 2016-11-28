@@ -58,17 +58,11 @@ Shape Card::getShape()const {
     return shape;
 }
 
-FigureCard::FigureCard(char figu, char shap):Card(shapeSymbolsToNames[shap]),figure(figureSymbolsToNames[figu]) {
+bool Card::isSamePrefix(Card &card) {
+    return getPrefix() == card.getPrefix();
 }
 
-bool FigureCard::isSamePrefix(Card &card)
-{
-    if (FigureCard *fc = dynamic_cast<FigureCard *>(&card))
-    {
-        return (getPrefix() == fc->getPrefix());
-    }
-
-    return false;
+FigureCard::FigureCard(char figu, char shap):Card(shapeSymbolsToNames[shap]),figure(figureSymbolsToNames[figu]) {
 }
 
 int FigureCard::compare(Card &card) {
@@ -109,16 +103,6 @@ FigureCard::~FigureCard() {}
 
 
 NumericCard::NumericCard(int num, char shap) :Card(shapeSymbolsToNames[shap]),number(num) {
-}
-
-bool NumericCard::isSamePrefix(Card &card)
-{
-    if (NumericCard *nc = dynamic_cast<NumericCard *>(&card))
-    {
-        return (this->getPrefix() == nc->getPrefix());
-    }
-
-    return false;
 }
 
 int NumericCard::compare(Card &card) {

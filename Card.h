@@ -26,15 +26,15 @@ private:
     Shape shape;
 protected:
     Card(Shape shap);
-public:
     Card(const Card &card);
+public:
     virtual Card * clone()=0;
     Shape getShape()const;
     virtual string toString() = 0;
     virtual ~Card();
     virtual int compare(Card &card) = 0;
     virtual string getPrefix() = 0;
-    virtual bool isSamePrefix(Card &card) = 0;
+    bool isSamePrefix(Card &card);
 };
 
 class FigureCard : public Card {
@@ -48,7 +48,6 @@ public:
     virtual int compare(Card &card) override;
     virtual string getPrefix() override;
     Figure getFigure()const;
-    virtual bool isSamePrefix(Card &card) override;
     virtual ~FigureCard();
 
 };
@@ -63,7 +62,6 @@ public:
     virtual string toString() override;
     virtual int compare(Card &card) override;
     virtual string getPrefix() override;
-    virtual bool isSamePrefix(Card &card) override;
     int getNumber()const;
     virtual ~NumericCard();
 

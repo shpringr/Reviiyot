@@ -30,7 +30,9 @@ Game::Game(const Game& game):
 void Game::readConfigFile(char *configurationFile) {
 
     ifstream source;
-    source.open(configurationFile);
+    string path = "./" + string(configurationFile);
+
+    source.open(path);
     string line;
 
     if (source.is_open()) {

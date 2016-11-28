@@ -26,9 +26,11 @@ vector<Card *>& Deck::getCards()
 
 Card* Deck::fetchCard()
 {
-	Card* temp = cards.front();
-	cards.erase(cards.begin());
-	return temp;
+    Card * tempToDelete = cards.front();
+    Card* fetched = tempToDelete->clone();
+    cards.erase(cards.begin());
+    delete (tempToDelete);
+	return fetched;
 }
 
 int Deck::getNumberOfCards(){
