@@ -11,6 +11,10 @@ string Player::getName()const {
     return name;
 }
 
+string Player::getName(){
+    return name;
+}
+
 int  Player::getPlayerWithMostCards(const vector<Player *> &players, int iCurrPlayer){
 
     int from = 0;

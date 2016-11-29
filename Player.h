@@ -18,6 +18,7 @@ public:
     Player(string nam);
     Player(const Player& player);
     string getName() const;
+    string getName();
     virtual Player * clone()=0;
 	virtual int getFromWho(const vector<Player *> &players, int iCurrPlayer)=0;
 	virtual string getWhichCardPrefix()=0;
