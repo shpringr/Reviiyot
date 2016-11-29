@@ -21,8 +21,12 @@ vector<Card *>  Hand::copyHand() const {
 
 bool Hand::addCard(Card &card)
 {
-    hand.push_back(&card);
-    return true;
+    if (!isCardInHand(card)) {
+        hand.push_back(card.clone());
+        return true;
+    }
+
+    return false;
 }
 
 bool Hand::removeCard(Card &card) {
@@ -43,12 +47,12 @@ int Hand::getNumberOfCards() {
     return (int)hand.size();
 }
 
-int Hand::getNumberOfSamePrefix(Card& card)
+int Hand::getNumberOfCardsWithSamePrefix(string prefix)
 {
     int count = 0;
 
     for (Card *c : hand) {
-        if (c->isSamePrefix(card))
+        if (c->isSamePrefix(prefix))
         {
             count++;
         }
@@ -58,10 +62,15 @@ int Hand::getNumberOfSamePrefix(Card& card)
 }
 
 
-vector<Card *> Hand::searchCardsWithSamePrefix(Card& card) {
+bool Hand::isCardInHand(Card &card)
+{
+    return searchCardInHand(card) != nullptr;
+}
+
+vector<Card *> Hand::searchCardsWithSamePrefix(string prefix) {
     vector<Card *> cards;
     for (Card *c : hand) {
-        if (c->isSamePrefix(card)) {
+        if (c->isSamePrefix(prefix)) {
             cards.push_back(c);
         }
     }
@@ -69,8 +78,8 @@ vector<Card *> Hand::searchCardsWithSamePrefix(Card& card) {
     return cards;
 }
 
-void Hand::discardSet(Card* currCard) {
-    for (Card* card : searchCardsWithSamePrefix(*currCard)) {
+void Hand::discardSet(string prefix) {
+    for (Card* card : searchCardsWithSamePrefix(prefix)) {
         removeCard(*card);
         delete (card);
     }
@@ -91,7 +100,7 @@ string Hand::toString() {
 }
 
 
-Card* Hand::getHighestAmount()
+Card* Hand::getCardWIthHighestAmount()
 {
     std::sort (hand.begin(), hand.end(), compare);
     int i=0;
@@ -100,7 +109,7 @@ Card* Hand::getHighestAmount()
     Card * cardAns = hand[0];
 
     for (unsigned int j = 1; j < hand.size(); ++j) {
-        if (hand[i]->isSamePrefix(*hand[j])){
+        if (hand[i]->isSamePrefix(hand[j]->getPrefix())){
             counter++;
 
         }
@@ -125,7 +134,7 @@ Card* Hand::getHighestAmount()
 }
 
 
-Card* Hand::getLowestAmount()
+Card* Hand::getCardWithLowestAmount()
 {
     std::sort (hand.begin(), hand.end(), compare);
     int i=0;
@@ -134,7 +143,7 @@ Card* Hand::getLowestAmount()
     Card * cardAns = hand[0];
 
     for (unsigned int j = 1; j < hand.size(); ++j) {
-        if (hand[i]->isSamePrefix(*hand[j])){
+        if (hand[i]->isSamePrefix(hand[j]->getPrefix())){
             counter++;
 
         }
@@ -157,14 +166,14 @@ Card* Hand::getLowestAmount()
 
 
 
-Card * Hand::getTheHighestValue()
+Card * Hand::getCardWithHighestValue()
 {
     std::sort (hand.begin(), hand.end(), compare);
     return hand.back();
 }
 
 
-Card * Hand::getTheLowestValue()
+Card * Hand::getCardWithLowestValue()
 {
     std::sort (hand.begin(), hand.end(), compare);
     return hand.front();
@@ -178,4 +187,17 @@ void Hand::clearHand() {
 for (unsigned int i = 0; i < hand.size(); ++i) {
         delete (hand[i]);
     }
+}
+
+Card* Hand::searchCardInHand(Card &card) {
+
+    for (unsigned int i = 0; i < hand.size(); ++i)
+    {
+        if(hand[i]->compare(card) == 0)
+        {
+            return hand[i];
+        }
+    }
+
+    return nullptr;
 }

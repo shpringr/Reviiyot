@@ -15,21 +15,23 @@ private:
     vector<Card *> hand;
 protected:
     void clearHand();
+    Card* getCardWIthHighestAmount();
+    Card * getCardWithHighestValue();
+    Card * getCardWithLowestValue();
+    Card* getCardWithLowestAmount();
 public:
     Hand();
     Hand(const Hand &hand_);
     vector<Card *>  copyHand() const;
     bool addCard(Card &card);
     bool removeCard(Card &card);
-    Card* getHighestAmount();
-    int getNumberOfSamePrefix(Card &card);
+    int getNumberOfCardsWithSamePrefix(string prefix);
     int getNumberOfCards();
-    Card * getTheHighestValue();
-    Card * getTheLowestValue();
     string toString();
-    vector<Card *> searchCardsWithSamePrefix(Card& card);
-    void discardSet(Card* currCard);
-    Card* getLowestAmount();
+    vector<Card *> searchCardsWithSamePrefix(string prefix);
+    void discardSet(string prefix);
+    bool isCardInHand(Card &card);
+    Card* searchCardInHand(Card & card);
     virtual ~Hand() = 0;
 };
 

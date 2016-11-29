@@ -17,10 +17,10 @@ private:
     int numberOfTurns = 0;
 
     void readConfigFile(char *configurationFile);
-    void addCardAndDiscardIfNeeded(Player& player, Card& card);
+    void addCardAndDiscardIfNeeded(Player& player, Card* card);
     void increaseNumberOfTurns();
     bool isThereAWinner();
-    void printATurn(Player& pPlayer, Player& pPlayer1, Card& pCard);
+    void printATurn(Player& pPlayer, Player& pPlayer1, string prefix);
     void ignoreInsignificantLines(ifstream &source, string &line);
     void addCardToDeck(char shape, string prefix);
     void addPlayer(string name, int type);

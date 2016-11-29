@@ -12,15 +12,15 @@ class Player : public Hand {
 private:
     const string name;
 protected:
-	int getThePlayerWithMostCards(const vector<Player *> &players,int iCurrPlayer);
+	int getPlayerWithMostCards(const vector<Player *> &players, int iCurrPlayer);
 	int getNextPlayer(const vector<Player *> &players, int iCurrPlayer, int& from);
 public:
     Player(string nam);
     Player(const Player& player);
-    string getName()const;
+    string getName() const;
     virtual Player * clone()=0;
 	virtual int getFromWho(const vector<Player *> &players, int iCurrPlayer)=0;
-	virtual Card * getWhichCardPrefix()=0;
+	virtual string getWhichCardPrefix()=0;
 	virtual ~Player();
 	string toString();
 };
@@ -32,7 +32,7 @@ public:
     virtual Player * clone() override;
 
 	virtual int getFromWho(const vector<Player *> &players, int iCurrPlayer) override;
-	virtual Card * getWhichCardPrefix() override;
+	virtual string getWhichCardPrefix() override;
     ~PlayerType1();
 };
 
@@ -43,7 +43,7 @@ public:
     virtual Player * clone() override;
 
 	virtual int getFromWho(const vector<Player *> &players, int iCurrPlayer) override;
-	virtual Card * getWhichCardPrefix() override;
+	virtual string getWhichCardPrefix() override;
     ~PlayerType2();
 };
 
@@ -56,7 +56,7 @@ public:
     virtual Player * clone() override;
 
 	virtual int getFromWho(const vector<Player *> &players, int iCurrPlayer) override;
-	virtual Card * getWhichCardPrefix() override;
+	virtual string getWhichCardPrefix() override;
     ~PlayerType3();
 
 };
@@ -71,7 +71,7 @@ public:
     virtual Player * clone() override;
 
 	virtual int getFromWho(const vector<Player *> &players, int iCurrPlayer) override;
-	virtual Card * getWhichCardPrefix() override;
+	virtual string getWhichCardPrefix() override;
     ~PlayerType4();
 
 };

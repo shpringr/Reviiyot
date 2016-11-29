@@ -39,30 +39,28 @@ Card::Card(Shape shap):shape(shap) {}
 
 Card::Card(const Card& card):shape(card.getShape())  {}
 
-FigureCard::FigureCard(const FigureCard &figure_card) : Card(figure_card) , figure(figure_card.getFigure()) {}
-
-NumericCard::NumericCard(const NumericCard &numeric_card): Card(numeric_card), number(numeric_card.getNumber()) {}
-
-
-Card *NumericCard::clone() {
-    return new NumericCard(*this);
-}
-
-Card *FigureCard::clone() {
-    return new FigureCard(*this);
-}
-
-Card::~Card() {}
-
 Shape Card::getShape()const {
     return shape;
 }
 
-bool Card::isSamePrefix(Card &card) {
-    return getPrefix() == card.getPrefix();
+bool Card::isSamePrefix(string prefix) {
+    return getPrefix() == prefix;
 }
 
+Card::~Card() {}
+
+
+
+
+
 FigureCard::FigureCard(char figu, char shap):Card(shapeSymbolsToNames[shap]),figure(figureSymbolsToNames[figu]) {
+}
+
+FigureCard::FigureCard(const FigureCard &figure_card) : Card(figure_card) , figure(figure_card.getFigure()) {}
+
+Card *FigureCard::clone() {
+    return new FigureCard(*this);
+
 }
 
 int FigureCard::compare(Card &card) {
@@ -95,7 +93,7 @@ string FigureCard::toString() {
 
 }
 
-Figure FigureCard::getFigure()const {
+Figure FigureCard::getFigure() const {
     return this->figure;
 }
 
@@ -103,6 +101,14 @@ FigureCard::~FigureCard() {}
 
 
 NumericCard::NumericCard(int num, char shap) :Card(shapeSymbolsToNames[shap]),number(num) {
+}
+
+
+NumericCard::NumericCard(const NumericCard &numeric_card): Card(numeric_card), number(numeric_card.getNumber()) {}
+
+
+Card *NumericCard::clone() {
+    return new NumericCard(*this);
 }
 
 int NumericCard::compare(Card &card) {
@@ -134,7 +140,7 @@ string NumericCard::toString() {
     return getPrefix() + shapeNamesToSymbols[getShape()];
 }
 
-int NumericCard::getNumber()const {
+int NumericCard::getNumber() const {
     return this->number;
 }
 

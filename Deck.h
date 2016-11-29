@@ -13,15 +13,15 @@ class Deck
 {
 private:
     vector<Card *> cards;
+    void clearDeck();
 
 public:
     Deck();
     Deck(const Deck &deck);
     vector<Card *> copyDeck() const;
-    void clearDeck();
     ~Deck();
     vector<Card *>& getCards();
-    Card *fetchCard();
+    Card* fetchCard();
     int getNumberOfCards();
     string toString();
 };

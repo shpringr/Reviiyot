@@ -11,7 +11,7 @@ string Player::getName()const {
     return name;
 }
 
-int  Player::getThePlayerWithMostCards(const vector<Player *> &players , int iCurrPlayer){
+int  Player::getPlayerWithMostCards(const vector<Player *> &players, int iCurrPlayer){
 
     int from = 0;
     int maxNumOfCards = 0;
@@ -55,11 +55,11 @@ Player *PlayerType1::clone() {
 }
 
 int PlayerType1::getFromWho(const vector<Player *> &players, int iCurrPlayer){
-    return getThePlayerWithMostCards(players, iCurrPlayer);
+    return getPlayerWithMostCards(players, iCurrPlayer);
 }
 
-Card * PlayerType1::getWhichCardPrefix() {
-    return this->getHighestAmount();
+string PlayerType1::getWhichCardPrefix() {
+    return this->getCardWIthHighestAmount()->getPrefix();
 }
 
 PlayerType1::~PlayerType1() {}
@@ -75,11 +75,11 @@ Player *PlayerType2::clone() {
 
 int PlayerType2::getFromWho(const vector<Player *> &players, int iCurrPlayer){
 
-    return getThePlayerWithMostCards(players,iCurrPlayer);
+    return getPlayerWithMostCards(players, iCurrPlayer);
 }
 
-Card * PlayerType2::getWhichCardPrefix() {
-    return this->getLowestAmount();
+string PlayerType2::getWhichCardPrefix() {
+    return this->getCardWithLowestAmount()->getPrefix();
 }
 
 PlayerType2::~PlayerType2() {}
@@ -97,8 +97,8 @@ int PlayerType3::getFromWho(const vector<Player *> &players, int iCurrPlayer){
     return getNextPlayer(players, iCurrPlayer, from);
 }
 
-Card * PlayerType3::getWhichCardPrefix()  {
-    return this->getTheHighestValue();
+string PlayerType3::getWhichCardPrefix()  {
+    return this->getCardWithHighestValue()->getPrefix();
 }
 PlayerType3::~PlayerType3() {}
 
@@ -116,8 +116,8 @@ int PlayerType4::getFromWho(const vector<Player *> &players, int iCurrPlayer){
     return getNextPlayer(players,iCurrPlayer, from);
 }
 
-Card * PlayerType4::getWhichCardPrefix() {
-    return this->getTheLowestValue();
+string PlayerType4::getWhichCardPrefix() {
+    return this->getCardWithLowestValue()->getPrefix();
 }
 
 PlayerType4::~PlayerType4() {}

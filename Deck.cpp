@@ -17,8 +17,6 @@ vector<Card *> Deck::copyDeck() const {
     return newDeck;
 }
 
-
-
 vector<Card *>& Deck::getCards()
 {
 	return cards;

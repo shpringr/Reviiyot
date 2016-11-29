@@ -143,9 +143,16 @@ void Game::init() {
             Card *currCard = deck.fetchCard();
             Player *currPlayer = players[i];
 
-            addCardAndDiscardIfNeeded(*currPlayer, *currCard);
+            addCardAndDiscardIfNeeded(*currPlayer, currCard);
         }
     }
+}
+
+void Game::printATurn(Player& askingPlayer, Player& askedPlayer, string prefix) {
+    cout << "Turn " << numberOfTurns << endl;
+    printState();
+    cout << askingPlayer.getName() + " asked " + askedPlayer.getName()
+            + " for the value " + prefix << endl << endl;
 }
 
 void Game::play() {
@@ -158,28 +165,28 @@ void Game::play() {
 
         Player *askingPlayer = players[currPlayerIndex];
         Player *askedPlayer = players[askingPlayer->getFromWho(players,currPlayerIndex)];
-        Card *cardToAsk = askingPlayer->getWhichCardPrefix();
+        string prefix = askingPlayer->getWhichCardPrefix();
 
         if (isVerbalOn)
-            printATurn(*askingPlayer, *askedPlayer, *cardToAsk);
+            printATurn(*askingPlayer, *askedPlayer, prefix);
 
-        vector<Card *> cardsOfSamePref = askedPlayer->searchCardsWithSamePrefix(*cardToAsk);
+        vector<Card *> cardsOfSamePref = askedPlayer->searchCardsWithSamePrefix(prefix);
 
         if (cardsOfSamePref.size() == 0 && deck.getNumberOfCards() > 0)
-            addCardAndDiscardIfNeeded(*askingPlayer, *deck.fetchCard());
+            addCardAndDiscardIfNeeded(*askingPlayer, deck.fetchCard());
         else
         {
             for (Card *cardToMove : cardsOfSamePref)
             {
                 askedPlayer->removeCard(*cardToMove);
-                addCardAndDiscardIfNeeded(*askingPlayer, *cardToMove);
+                addCardAndDiscardIfNeeded(*askingPlayer, cardToMove);
             }
 
             if (askedPlayer->getNumberOfCards() > 0)
             {
                 for (unsigned int i = 0; i < cardsOfSamePref.size() && deck.getNumberOfCards() > 0; ++i)
                 {
-                    addCardAndDiscardIfNeeded(*askedPlayer, *deck.fetchCard());
+                    addCardAndDiscardIfNeeded(*askedPlayer, deck.fetchCard());
                 }
             }
         }
@@ -188,17 +195,18 @@ void Game::play() {
     }
 }
 
-void Game::printATurn(Player& askingPlayer, Player& askedPlayer, Card& cardToAsk) {
-    cout << "Turn " << numberOfTurns << endl;
-    printState();
-    cout << askingPlayer.getName() + " asked " + askedPlayer.getName()
-            + " for the value " + cardToAsk.getPrefix() << endl << endl;
-}
+void Game::addCardAndDiscardIfNeeded(Player& player, Card* card) {
 
-void Game::addCardAndDiscardIfNeeded(Player& player, Card& card) {
-    player.addCard(card);
-    if (player.getNumberOfSamePrefix(card) == 4)
-        player.discardSet(&card);
+    if (player.addCard(*card)) {
+        Card * tempToDelete = card;
+        card = player.searchCardInHand(*card);
+
+        delete (tempToDelete);
+    }
+
+    string prefix = card->getPrefix();
+    if (player.getNumberOfCardsWithSamePrefix(prefix) == 4)
+        player.discardSet(prefix);
 }
 
 void Game::printState() {
